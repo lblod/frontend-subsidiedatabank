@@ -1,7 +1,23 @@
-{{page-title "FrontendSubsidiedatabank"}}
+<AuMainHeader @homeRoute="index" @appTitle="Subsidiedatabank">
+  <li class="au-c-list-horizontal__item">
+    {{!-- <AuLink @route="help" @skin="secondary">
+      <AuIcon @icon="question-circle" @alignment="left" />
+      Help
+    </AuLink> --}}
+  </li>
+  <li class="au-c-list-horizontal__item">
+    {{#if this.session.isAuthenticated}}
+      <AuButton @skin="link" @icon="logout" {{on "click" this.logout}}>
+        Afmelden
+      </AuButton>
+    {{else}}
+      <LoginButton @isCompact={{true}} />
+    {{/if}}
+  </li>
+</AuMainHeader>
 
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+<main id="main" class="au-c-main-container">
+  {{outlet}}
+</main>
 
-{{outlet}}
+<AuModalContainer />

@@ -1,9 +1,10 @@
 'use strict';
 
 const browsers = [
-  'last 1 Chrome versions',
-  'last 1 Firefox versions',
-  'last 1 Safari versions',
+  'last 3 Edge versions',
+  'last 3 Chrome versions',
+  'last 3 Firefox versions',
+  'last 3 Safari versions',
 ];
 
 module.exports = {

@@ -1,62 +1,104 @@
-{{page-title "Subsidiebeheer " this.bestuurseenheid.classificatie.label " " this.bestuurseenheid.naam}}
-
+{{page-title
+  "Subsidiebeheer "
+  this.bestuurseenheid.classificatie.label
+  " "
+  this.bestuurseenheid.naam
+}}
 
 <AuBodyContainer>
   <AuToolbar @border="bottom" @size="large" @nowrap="{{true}}" as |Group|>
     <Group>
       <div>
-        <AuHeading @skin="2" data-test-loket="subsidiebeheer-page-title">Lopende subsidiedossiers</AuHeading>
+        <AuHeading @skin="2" data-test-loket="subsidiebeheer-page-title">Lopende
+          subsidiedossiers</AuHeading>
         <p>Lopende subsidieaanvragen voor uw bestuur.</p>
       </div>
     </Group>
   </AuToolbar>
 
   <AuDataTable
-          @content={{this.model}}
-          @isLoading={{this.isLoadingModel}}
-          @noDataMessage="Geen subsidieaanvragen gevonden"
-          @sort={{this.sort}}
-          @page={{this.page}}
-          @size={{this.size}}
-          as |t|
+    @content={{this.model}}
+    @isLoading={{this.isLoadingModel}}
+    @noDataMessage="Geen subsidieaanvragen gevonden"
+    @sort={{this.sort}}
+    @page={{this.page}}
+    @size={{this.size}}
+    as |t|
   >
     <t.content as |c|>
       <c.header>
-        <th class="au-u-visible-small-up">Subsidiemaatregel</th>
-        <th class="au-u-visible-small-up">Juridische vorm</th>
-        <th class="au-u-visible-small-up">Bestuurseenheid</th>
-        <th class="au-u-visible-small-up">Aanvraag datum</th>
-        <th class="au-u-visible-small-up">Status</th>
-        <th class="au-u-visible-small-up">Actieve stap</th>
+        <AuDataTableThSortable
+          @label="Subsidiemaatregel"
+          @field="subsidy-measure-offer.title"
+          @currentSorting={{this.sort}}
+          @class="data-table__header-title au-u-visible-from@medium"
+        />
+
+        <AuDataTableThSortable
+          @label="Juridische vorm"
+          @field="participations.participating-bestuurseenheid.classificatie.label"
+          @currentSorting={{this.sort}}
+          @class="data-table__header-title au-u-visible-from@medium"
+        />
+
+        <AuDataTableThSortable
+          @label="Bestuurseenheid"
+          @field="participations.participating-bestuurseenheid.naam"
+          @currentSorting={{this.sort}}
+          @class="data-table__header-title au-u-visible-from@medium"
+        />
+
+        <AuDataTableThSortable
+          @label="Aanvraag datum"
+          @field="modified"
+          @currentSorting={{this.sort}}
+          @class="data-table__header-title au-u-visible-from@medium"
+        />
+
+        <AuDataTableThSortable
+          @label="Status"
+          @field="status"
+          @currentSorting={{this.sort}}
+          @class="data-table__header-title au-u-visible-from@medium"
+        />
+
+        <!-- TODO: add field -->
+        <AuDataTableThSortable
+          @label="Actieve stap"
+          @field=""
+          @currentSorting={{this.sort}}
+          @class="data-table__header-title au-u-visible-from@medium"
+        />
       </c.header>
 
       <c.body as |consumption|>
-          <td>
-            {{consumption.subsidyMeasureOffer.title}}
+        <td>
+          {{consumption.subsidyMeasureOffer.title}}
+          {{consumption.id}}
 
-            {{! TODO: The solution in the lint rule docs doesn't work here. We need to find a different solution.}}
-            {{! template-lint-disable no-array-prototype-extensions}}
-            {{#if consumption.subsidyApplicationForms.firstObject.projectName}}
-              <AuHelpText @skin="secondary" class="au-u-margin-top-none">
-                {{consumption.subsidyApplicationForms.firstObject.projectName}}
-              </AuHelpText>
-            {{/if}}
-          </td>
-          <td>
-            {{consumption.participations.firstObject.participatingBestuurseenheid.classificatie.label}}
-          </td>
-          <td>
-            {{consumption.participations.firstObject.participatingBestuurseenheid.naam}}
-          </td>
-          <td>
-            {{moment-format consumption.modified "DD-MM-YYYY — HH:mm"}}
-          </td>
-          <td class="au-u-visible-small-up">
-            <Subsidies::ConsumptionStatusPill @consumption={{consumption}}/>
-          </td>
-          <td>
+          {{! TODO: The solution in the lint rule docs doesn't work here. We need to find a different solution.}}
+          {{! template-lint-disable no-array-prototype-extensions}}
+          {{#if consumption.subsidyApplicationForms.firstObject.projectName}}
+            <AuHelpText @skin="secondary" class="au-u-margin-top-none">
+              {{consumption.subsidyApplicationForms.firstObject.projectName}}
+            </AuHelpText>
+          {{/if}}
+        </td>
+        <td>
+          {{consumption.participations.firstObject.participatingBestuurseenheid.classificatie.label}}
+        </td>
+        <td>
+          {{consumption.participations.firstObject.participatingBestuurseenheid.naam}}
+        </td>
+        <td>
+          {{moment-format consumption.modified "DD-MM-YYYY — HH:mm"}}
+        </td>
+        <td class="au-u-visible-small-up">
+          <Subsidies::ConsumptionStatusPill @consumption={{consumption}} />
+        </td>
+        <td>
 
-          </td>
+        </td>
       </c.body>
     </t.content>
   </AuDataTable>

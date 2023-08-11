@@ -11,8 +11,6 @@ export default class SubsidyApplicationsIndexRoute extends Route.extend(
   modelName = 'subsidy-measure-consumption';
 
   mergeQueryOptions(params) {
-    console.log(params);
-
     return {
       include: [
         'status',

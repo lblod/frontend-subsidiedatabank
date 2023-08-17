@@ -10,6 +10,18 @@ export default class SubsidyApplicationsIndexRoute extends Route.extend(
 
   modelName = 'subsidy-measure-consumption';
 
+  mergeQueryOptions(params) {
+    return {
+      include: [
+        'status',
+        'subsidy-measure-offer',
+        'subsidy-application-forms',
+        'participations',
+      ].join(','),
+    };
+  }
+
+  // original for reference, TODO: delete
   // mergeQueryOptions() {
   //   return {
   //     include: [

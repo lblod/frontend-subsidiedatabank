@@ -11,19 +11,7 @@ export default class SubsidiesConsumptionStatusPill extends Component {
   }
 
   get label() {
-    let title = this.status.get('label');
-    if (this.description) return `${title} - ${this.description}`;
-    return title;
-  }
-
-  get description() {
-    if (this.status.get('uri') === STATUS.ACTIVE) {
-      const step = this.consumption.get(
-        'activeSubsidyApplicationFlowStep.subsidyProceduralStep'
-      );
-      if (step) return step.get('description');
-    }
-    return undefined;
+    return this.status.get('label');
   }
 
   get skin() {

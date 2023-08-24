@@ -1,0 +1,41 @@
+<AuDataTableThSortable
+  @label="Subsidiemaatregel"
+  @field="subsidy-measure-offer.title"
+  @currentSorting={{@sort}}
+  @class="data-table__header-title au-u-visible-from@medium"
+/>
+
+<AuDataTableThSortable
+  @label="Type bestuur"
+  @field="participations.participating-bestuurseenheid.classificatie.label"
+  @currentSorting={{@sort}}
+  @class="data-table__header-title au-u-visible-from@medium"
+/>
+
+<AuDataTableThSortable
+  @label="Bestuurseenheid"
+  @field="participations.participating-bestuurseenheid.naam"
+  @currentSorting={{@sort}}
+  @class="data-table__header-title au-u-visible-from@medium"
+/>
+
+<AuDataTableThSortable
+  @label="Laatst gewijzigd"
+  @field="modified"
+  @currentSorting={{@sort}}
+  @class="data-table__header-title au-u-visible-from@medium"
+/>
+
+<AuDataTableThSortable
+  @label="Status"
+  @field="status"
+  @currentSorting={{@sort}}
+  @class="data-table__header-title au-u-visible-from@medium"
+/>
+
+<AuDataTableThSortable
+  @label="Actieve stap"
+  @field=""
+  @currentSorting={{@sort}}
+  @class="data-table__header-title au-u-visible-from@medium"
+/>

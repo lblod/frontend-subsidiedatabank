@@ -11,7 +11,7 @@ Router.map(function () {
   this.route('login');
   this.route('loading');
   this.route('subsidy', function () {
-    this.route('applications', function () {});
+    this.route('applications');
   });
 
   this.route('legaal', function () {

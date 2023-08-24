@@ -1,2 +1,28 @@
-{{page-title "Applications"}}
-{{outlet}}
+<div class="au-c-main-container__content au-c-main-container__content--scroll">
+  <div class="au-c-body-container">
+    <div id="content" class="au-c-body-container">
+      <div class="au-o-grid au-o-grid--flush au-o-grid--fixed">
+        <div class="au-o-grid__item au-u-6-6">
+          <div class="au-c-body-container">
+            <AuToolbar @size="small" @border="bottom" as |Group|>
+              <Group>
+                <AuHeading @level="1" @skin="2" class="au-u-margin-top-tiny au-u-margin-bottom-tiny">
+                  Subsidy inzendingen
+                </AuHeading>
+              </Group>
+            </AuToolbar>
+            <Subsidies::SearchTable
+              @model={{this.model}}
+              @isLoading={{this.isLoadingModel}}
+              @queryParams={{this.filter}}
+              @sort={{this.sort}}
+              @page={{this.page}}
+              @size={{this.size}}
+            />
+          </div>
+        </div>
+        {{outlet}}
+      </div>
+    </div>
+  </div>
+</div>

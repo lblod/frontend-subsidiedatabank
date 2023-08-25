@@ -11,18 +11,4 @@ export default class SubsidyApplicationsController extends Controller {
   size = 15;
   sort = 'modified';
 
-  @action
-  setFilter(key, value) {
-    if (typeOf(value) === 'array') {
-      this.filter[key] = value.join(',');
-    } else {
-      this.filter[key] = value;
-    }
-    this.updateQueryParams();
-  }
-
-  @action
-  updateQueryParams() {
-    this.filter.keys.forEach((key) => (key = this.filter[key]));
-  }
 }

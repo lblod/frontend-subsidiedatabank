@@ -10,7 +10,9 @@
   {{@consumption.participations.firstObject.participatingBestuurseenheid.naam}}
 </td>
 <td>
-  {{moment-format @consumption.modified "DD-MM-YYYY — HH:mm"}}
+  {{#if @consumption.modified}}
+    {{moment-format @consumption.modified "DD-MM-YYYY — HH:mm"}}
+  {{/if}}
 </td>
 <td class="au-u-visible-small-up">
   <Subsidies::ConsumptionStatusPill @consumption={{@consumption}} />

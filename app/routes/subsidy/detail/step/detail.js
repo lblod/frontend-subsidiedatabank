@@ -15,8 +15,8 @@ export default class SubsidyApplicationsEditStepEditRoute extends Route {
   async model({ form_id: semanticFormID }) {
     console.log('semantiicformid1');
     console.log('semantiicformid', semanticFormID);
-    let { consumption } = this.modelFor('subsidy.edit');
-    let { step } = this.modelFor('subsidy.edit.step');
+    let { consumption } = this.modelFor('subsidy.detail');
+    let { step } = this.modelFor('subsidy.detail.step');
     let semanticForm = await this.store.findRecord(
       'subsidy-application-form',
       semanticFormID

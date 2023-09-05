@@ -5,8 +5,7 @@ export default class SubsidyApplicationsEditStepRoute extends Route {
   @service store;
 
   async model({ step_id: stepId }) {
-    let { consumption } = this.modelFor('subsidy.edit');
-    console.log("STEP", consumption.serialize());
+    let { consumption } = this.modelFor('subsidy.detail');
     let step = await this.store.findRecord(
       'subsidy-application-flow-step',
       stepId,

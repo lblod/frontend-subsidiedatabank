@@ -229,7 +229,7 @@ export default class SubsidyApplicationsEditStepEditController extends Controlle
   //   const active = yield this.consumption.activeSubsidyApplicationFlowStep;
   //   if (active && this.step.id !== active.get('id')) {
   //     this.router.transitionTo(
-  //       'subsidy.edit',
+  //       'subsidy.detail',
   //       this.consumption.id
   //     );
   //   }

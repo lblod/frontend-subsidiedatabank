@@ -6,7 +6,7 @@ export default class SubsidyApplicationsEditStepIndexRoute extends Route {
   @service store;
 
   async beforeModel() {
-    let { consumption, step } = this.modelFor('subsidy.edit.step');
+    let { consumption, step } = this.modelFor('subsidy.detail.step');
     let forms = await this.store.query('subsidy-application-form', {
       filter: {
         'subsidy-application-flow-step': {
@@ -24,16 +24,10 @@ export default class SubsidyApplicationsEditStepIndexRoute extends Route {
     const form = forms.firstObject;
     if (form) {
       return this.router.replaceWith(
-        'subsidy.edit.step.edit',
+        'subsidy.detail.step.detail',
         consumption.id,
         step.id,
         form.id
-      );
-    } else {
-      return this.router.replaceWith(
-        'subsidy.edit.step.new',
-        consumption.id,
-        step.id
       );
     }
   }

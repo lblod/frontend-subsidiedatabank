@@ -10,7 +10,7 @@ export default class SubsidyApplicationsEditIndexRoute extends Route {
    * NOTE: always assumes a consumption to have the proper model defined.
    */
   async beforeModel() {
-    let { consumption } = this.modelFor('subsidy.edit');
+    let { consumption } = this.modelFor('subsidy.detail');
     /**
      * NOTE: first we always try to transition to the defined active-step.
      */
@@ -47,7 +47,7 @@ export default class SubsidyApplicationsEditIndexRoute extends Route {
   redirectToStep(consumption, step) {
     console.log('redirect??', step);
     return this.router.transitionTo(
-      'subsidy.edit.step',
+      'subsidy.detail.step',
       consumption.id,
       step.id
     );

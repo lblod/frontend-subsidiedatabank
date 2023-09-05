@@ -12,6 +12,12 @@ Router.map(function () {
   this.route('loading');
   this.route('subsidy', function () {
     this.route('applications');
+    this.route('edit', { path: '/:id' }, function () {
+      this.route('step', { path: '/steps/:step_id' }, function () {
+        this.route('new');
+        this.route('edit', { path: '/forms/:form_id' });
+      });
+    });
   });
 
   this.route('legaal', function () {

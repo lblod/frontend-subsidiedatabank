@@ -59,6 +59,11 @@ export default class SearchSubmissionsRoute extends Route {
     // TODO generate this based on form configuration?
     if (!isEmpty(params.search)) query[`filter`] = params.search;
 
+
+    if (params.subsidieType)
+      query['filter[subsidy-measure-offer][:uri:]'] =
+        params.subsidieType;
+
     if (params.bestuurseenheden)
       query['filter[participations][participating-bestuurseenheid][:uri:]'] =
         params.bestuurseenheden;
@@ -69,6 +74,10 @@ export default class SearchSubmissionsRoute extends Route {
       ] = params.bestuursType;
 
     if (params.aanvraagDatum) query['filter[modified]'] = params.aanvraagDatum;
+
+    if (params.subsidieStatus)
+    query['filter[status][:uri:]'] =
+      params.subsidieStatus;
 
     this.lastParams.commit();
 

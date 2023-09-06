@@ -90,8 +90,10 @@ export async function removeSourceData(url) {
 // TODO generate this based on form-configuration?
 export function getQueryParams(options) {
   return {
+    subsidieType: options,
     bestuurseenheden: options,
     bestuursType: options,
+    subsidieStatus: options,
     aanvraagDatum: options,
   };
 }

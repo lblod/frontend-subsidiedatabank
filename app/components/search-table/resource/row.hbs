@@ -1,0 +1,22 @@
+<td>
+  {{@consumption.subsidyMeasureOffer.title}}
+</td>
+<td>
+  {{!-- template-lint-disable no-array-prototype-extensions --}}
+  {{@consumption.participations.firstObject.participatingBestuurseenheid.classificatie.label}}
+</td>
+<td>
+  {{!-- template-lint-disable no-array-prototype-extensions --}}
+  {{@consumption.participations.firstObject.participatingBestuurseenheid.naam}}
+</td>
+<td>
+  {{#if @consumption.modified}}
+    {{moment-format @consumption.modified "DD-MM-YYYY — HH:mm"}}
+  {{/if}}
+</td>
+<td class="au-u-visible-small-up">
+  <Subsidies::ConsumptionStatusPill @consumption={{@consumption}} />
+</td>
+<td>
+  {{@consumption.activeSubsidyApplicationFlowStep.subsidyProceduralStep.description}}
+</td>

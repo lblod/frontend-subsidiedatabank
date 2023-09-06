@@ -1,0 +1,32 @@
+<div class="au-c-body-container">
+  <div class="au-o-grid au-o-grid--flush au-o-grid--fixed">
+
+    <div class="au-o-grid__item au-1-1 au-u-2-5@small au-u-1-4@medium">
+      <div class="au-c-body-container">
+        <SearchQueries::FilterForm @queryParams={{@queryParams}}/>
+      </div>
+    </div>
+    <div class="au-o-grid__item au-1-1 au-u-3-5@small au-u-3-4@medium">
+      <div class="au-c-body-container">
+        <AuDataTable
+            @content={{@model}}
+            @isLoading={{this.isLoadingModel}}
+            @noDataMessage="Geen inzendingen gevonden"
+            @sort={{@sort}}
+            @page={{@page}}
+            @size={{@size}} as |t|>
+          <t.content class="au-c-data-table__table--small" as |c|>
+            <c.header>
+              <SearchTable::Resource::Header @sort={{@sort}} />
+            </c.header>
+            <c.body as |consumption|>
+              <SearchTable::Resource::Row @consumption={{consumption}} />
+            </c.body>
+            <tr>
+          </tr>
+          </t.content>
+        </AuDataTable>
+      </div>
+    </div>
+  </div>
+</div>

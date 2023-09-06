@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency-decorators';
 import fetch from 'fetch';
 
-export default class SubsidyApplicationsEditController extends Controller {
+export default class SubsidyDetailController extends Controller {
   @service router;
 
   get reeksHasStartOrEnd() {

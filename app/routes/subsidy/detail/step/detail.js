@@ -9,19 +9,17 @@ const FORM_GRAPH = new NamedNode('http://data.lblod.info/form');
 const META_GRAPH = new NamedNode('http://data.lblod.info/metagraph');
 const SOURCE_GRAPH = new NamedNode(`http://data.lblod.info/sourcegraph`);
 
-export default class SubsidyApplicationsEditStepEditRoute extends Route {
+export default class SubsidyDetailStepDetailRoute extends Route {
   @service store;
 
   async model({ form_id: semanticFormID }) {
-    console.log('semantiicformid1');
-    console.log('semantiicformid', semanticFormID);
+    console.log('semanticFormID', semanticFormID);
     let { consumption } = this.modelFor('subsidy.detail');
     let { step } = this.modelFor('subsidy.detail.step');
     let semanticForm = await this.store.findRecord(
       'subsidy-application-form',
       semanticFormID
     );
-    console.log('SEMANTICFORM', semanticForm.serialize());
     await semanticForm.belongsTo('status').reload();
 
     // TODO: Set up the application form similar to how it was done in the edit route before
@@ -74,16 +72,21 @@ export default class SubsidyApplicationsEditStepEditRoute extends Route {
   // --- Helpers ---
 
   async retrieveForm(url, store, graphs) {
-    console.log('RETRIEVE', url);
     let response = await fetch(url, {
       method: 'GET',
       headers: { Accept: 'application/vnd.api+json' },
     });
-    console.log('RETRIEVE2', response);
     // TODO: remove
-    if (response.status != 200) return;
+    if (response.status != 200) {
+      console.log(
+        'error while retrieving the form at ',
+        url,
+        ' status code:',
+        response.status
+      );
+      return;
+    }
     const content = await response.json();
-    console.log('CONTENTTT', graphs.formGraph);
     store.parse(content.form, graphs.formGraph, 'text/turtle');
     store.parse(content.meta, graphs.metaGraph, 'text/turtle');
     store.parse(content.source, graphs.sourceGraph, 'text/turtle');

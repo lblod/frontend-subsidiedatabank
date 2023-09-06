@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-export default class SubsidyApplicationsEditIndexRoute extends Route {
+export default class SubsidyDetailIndexRoute extends Route {
   @service router;
 
   /**
@@ -19,7 +19,6 @@ export default class SubsidyApplicationsEditIndexRoute extends Route {
       return this.redirectToStep(consumption, active);
     }
 
-    // await consumption.subsidyApplicationFlow.get('definedSteps');
     const steps = await consumption.subsidyApplicationFlow.get(
       'sortedDefinedSteps'
     );
@@ -45,7 +44,6 @@ export default class SubsidyApplicationsEditIndexRoute extends Route {
   }
 
   redirectToStep(consumption, step) {
-    console.log('redirect??', step);
     return this.router.transitionTo(
       'subsidy.detail.step',
       consumption.id,

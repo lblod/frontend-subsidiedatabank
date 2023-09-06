@@ -1,9 +1,6 @@
 <div class="au-c-body-container au-c-body-container--scroll">
 
   <div class="au-o-box au-c-form--disabled">
-    <p>
-      RDFform -----
-    </p>
     <RdfForm
       @groupClass="au-o-grid__item"
       @form={{this.form}}
@@ -16,9 +13,6 @@
       @level={{2}}
       class="au-u-max-width-medium"
     />
-    <p>
-      -----RDFform
-    </p>
   </div>
 
   <AuToolbar @size="large" as |Group|>
@@ -235,7 +229,7 @@
     </Group>
 
     {{! USER NOTIFICATIONS }}
-    <Group>
+    {{!-- <Group>
       <ul class="au-o-grid">
         {{! SAVING }}
         {{#if this.saveConcept.isRunning}}
@@ -298,7 +292,7 @@
             />
           </li>
         {{/if}}
-      </ul>
-    </Group>
+      </ul> --}}
+    {{! </Group> }}
   </AuToolbar>
 </div>

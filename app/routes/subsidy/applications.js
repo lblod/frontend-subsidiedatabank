@@ -6,7 +6,7 @@ import { tracked } from '@glimmer/tracking';
 import { getQueryParams } from '../../utils/filter-form-helpers';
 import { inject as service } from '@ember/service';
 
-export default class SearchSubmissionsRoute extends Route {
+export default class SubsidyApplicationsRoute extends Route {
   @service store;
   @tracked filter;
 

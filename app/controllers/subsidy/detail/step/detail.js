@@ -14,7 +14,7 @@ import {
 } from '../../../../models/submission-document-status';
 
 // TODO: cleanup unnecessary code
-export default class SubsidyApplicationsEditStepEditController extends Controller {
+export default class SubsidyDetailStepDetailController extends Controller {
   // To mimic user testing as much as possible
   // we introduce testMode queryparam, which skips some of the (blocking) frontend business logic.
   queryParams = ['testMode'];

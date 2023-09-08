@@ -121,7 +121,7 @@ export default class RdfFormFieldsClimateSubsidyCostsTableTableRowCustomDataComp
       restitutionPredicate,
       null,
       this.storeOptions.sourceGraph
-    )[0].object.value; // TODO: this seems to always return a string?
+    )[0].object.value;
     this.toRealiseUnits = this.storeOptions.store.match(
       this.tableEntryUri,
       toRealiseUnitsPredicate,

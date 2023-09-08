@@ -1,5 +1,5 @@
 {{page-title "Bekijk subsidieaanvraag"}}
-{{! TODO: remove 'au-u-1-1' and fix css }}
+{{! TODO: remove 'au-u-1-1' ?}}
 <AuToolbar
   @nowrap={{true}}
   @size="large"
@@ -39,14 +39,12 @@
   <Group
     class="au-c-toolbar__group--row au-c-toolbar__group--align-top au-u-1-1"
   >
-    <ul class="au-o-grid au-o-grid--tiny">
+    <ul class="au-o-grid au-o-grid--tiny au-u-1-1">
       <li class="au-o-grid__item au-u-1-2 au-u-1-3@small au-u-1-6@medium">
         <AuLabel>Bestuurseenheid</AuLabel>
         <p
-        >{{this.organization.classificatie.label}}&nbsp;{{this.organization.naam}}</p>
-        {{!         <AuHelpText @skin="tertiary" class="au-u-margin-left-none">
-          Wissel rechtsbovenaan van bestuurseenheid.
-        </AuHelpText> TODO: FIND BETTER SOLUTION}}
+          {{!-- >{{this.organization.classificatie.label}}&nbsp;{{this.organization.naam}}</p> --}}
+        >{{this.organization.classificatie.label}}{{this.organization.naam}}</p>
       </li>
       <li class="au-o-grid__item au-u-1-2 au-u-1-3@small au-u-1-6@medium">
         <AuLabel>Gewijzigd door</AuLabel>
@@ -76,7 +74,9 @@
   </Group>
 </AuToolbar>
 
-<SidebarContainer>
+{{! TODO: find better solution, added it to fix the double scroll problem }}
+{{! template-lint-disable no-inline-styles }}
+<SidebarContainer style="width: 100%; height: 70vh;">
   <:sidebar>
     <nav>
       <ul class="au-c-list-navigation">

@@ -17,6 +17,7 @@ import AccountabilityTableEditComponent from 'frontend-subsidiedatabank/componen
 import AccountabilityTableShowComponent from 'frontend-subsidiedatabank/components/rdf-form-fields/accountability-table/show';
 import FinancingTotalsComponent from 'frontend-subsidiedatabank/components/rdf-form-fields/urban-renewal/financing-totals';
 
+// TODO: check if this file is needed?
 export default class SubsidyDetailRoute extends Route {
   @service store;
   @service currentSession;

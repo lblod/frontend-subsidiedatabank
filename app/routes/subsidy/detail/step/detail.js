@@ -76,7 +76,7 @@ export default class SubsidyDetailStepDetailRoute extends Route {
       method: 'GET',
       headers: { Accept: 'application/vnd.api+json' },
     });
-    // TODO: remove
+    // TODO: maybe remove once figured out why some forms can't get retrieved?
     if (response.status != 200) {
       console.log(
         'error while retrieving the form at ',

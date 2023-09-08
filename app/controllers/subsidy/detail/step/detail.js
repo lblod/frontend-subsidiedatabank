@@ -109,8 +109,6 @@ export default class SubsidyDetailStepDetailController extends Controller {
   }
 
   get deadline() {
-    // TODO: need this double else we get error??
-    // this.model.step.get('deadline').content;
     return this.model.step.get('deadline').content;
   }
 

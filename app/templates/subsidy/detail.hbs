@@ -74,42 +74,42 @@
   </Group>
 </AuToolbar>
 
-{{! TODO: find better solution, added it to fix the double scroll problem }}
-{{! template-lint-disable no-inline-styles }}
-<SidebarContainer style="width: 100%; height: 70vh;">
-  <:sidebar>
-    <nav>
-      <ul class="au-c-list-navigation">
-        {{#each
-          this.consumption.subsidyApplicationFlow.sortedDefinedSteps
-          as |step|
-        }}
-          <li class="au-c-list-navigation__item">
-            <LinkTo
-              @route="subsidy.detail.step"
-              @model={{step.id}}
-              class="au-c-list-navigation__link"
-              style="flex-direction: column; align-items: start;"
-              {{!template-lint-disable no-inline-styles}}
-            >
-              <div> {{step.subsidyProceduralStep.description}} </div>
-              <AuHelpText
-                @skin="secondary"
-                @size="small"
-                style="margin: 0; line-height:normal"
+<AuBodyContainer id="content">
+  <SidebarContainer>
+    <:sidebar>
+      <nav>
+        <ul class="au-c-list-navigation">
+          {{#each
+            this.consumption.subsidyApplicationFlow.sortedDefinedSteps
+            as |step|
+          }}
+            <li class="au-c-list-navigation__item">
+              <LinkTo
+                @route="subsidy.detail.step"
+                @model={{step.id}}
+                class="au-c-list-navigation__link"
+                style="flex-direction: column; align-items: start;"
                 {{!template-lint-disable no-inline-styles}}
-              >Instuurbaar tot
-                {{moment-format
-                  step.subsidyProceduralStep.period.end
-                  "DD MMMM YYYY"
-                }}</AuHelpText>
-            </LinkTo>
-          </li>
-        {{/each}}
-      </ul>
-    </nav>
-  </:sidebar>
-  <:content>
-    {{outlet}}
-  </:content>
-</SidebarContainer>
+              >
+                <div> {{step.subsidyProceduralStep.description}} </div>
+                <AuHelpText
+                  @skin="secondary"
+                  @size="small"
+                  style="margin: 0; line-height:normal"
+                  {{!template-lint-disable no-inline-styles}}
+                >Instuurbaar tot
+                  {{moment-format
+                    step.subsidyProceduralStep.period.end
+                    "DD MMMM YYYY"
+                  }}</AuHelpText>
+              </LinkTo>
+            </li>
+          {{/each}}
+        </ul>
+      </nav>
+    </:sidebar>
+    <:content>
+      {{outlet}}
+    </:content>
+  </SidebarContainer>
+</AuBodyContainer>

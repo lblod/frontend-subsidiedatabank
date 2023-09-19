@@ -10,5 +10,4 @@ export default class SubsidyApplicationsController extends Controller {
   page = 0;
   size = 15;
   sort = '-modified';
-
 }

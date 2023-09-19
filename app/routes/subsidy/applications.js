@@ -6,7 +6,7 @@ import { tracked } from '@glimmer/tracking';
 import { getQueryParams } from '../../utils/filter-form-helpers';
 import { inject as service } from '@ember/service';
 
-export default class SearchSubmissionsRoute extends Route {
+export default class SubsidyApplicationsRoute extends Route {
   @service store;
   @tracked filter;
 
@@ -26,13 +26,6 @@ export default class SearchSubmissionsRoute extends Route {
     this.filter = params;
     this.lastParams.stageLive(params);
 
-    if (
-      this.lastParams.anyFieldChanged(
-        Object.keys(params).filter((key) => key !== 'page')
-      )
-    ) {
-      params.page = 0;
-    }
 
     return this.search(params);
   }

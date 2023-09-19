@@ -1,12 +1,14 @@
 <td>
-  {{@consumption.subsidyMeasureOffer.title}}
+  <LinkTo @route="subsidy.detail" @model={{@consumption.id}} class="au-c-link">
+    {{@consumption.subsidyMeasureOffer.title}}
+  </LinkTo>
 </td>
 <td>
-  {{!-- template-lint-disable no-array-prototype-extensions --}}
+  {{! template-lint-disable no-array-prototype-extensions }}
   {{@consumption.participations.firstObject.participatingBestuurseenheid.classificatie.label}}
 </td>
 <td>
-  {{!-- template-lint-disable no-array-prototype-extensions --}}
+  {{! template-lint-disable no-array-prototype-extensions }}
   {{@consumption.participations.firstObject.participatingBestuurseenheid.naam}}
 </td>
 <td>

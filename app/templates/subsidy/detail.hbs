@@ -1,0 +1,115 @@
+{{page-title "Bekijk subsidieaanvraag"}}
+{{! TODO: remove 'au-u-1-1' ?}}
+<AuToolbar
+  @nowrap={{true}}
+  @size="large"
+  class="au-u-padding-bottom-tiny au-u-1-1"
+  as |Group|
+>
+  <Group class="au-c-toolbar__group--col au-u-1-1">
+    <div>
+      <AuHeading @skin="2">
+        {{this.consumption.subsidyMeasureOffer.title}}
+        <br />
+        {{this.consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.label}}
+        {{#if this.reeksHasStartOrEnd}}
+          ({{moment-format
+            this.consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.period.begin
+            "DD MMMM YYYY"
+          }}
+          &#8211;
+          {{moment-format
+            this.consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.period.end
+            "DD MMMM YYYY"
+          }})
+        {{/if}}
+      </AuHeading>
+    </div>
+  </Group>
+  <Group class="au-c-toolbar__group--col">
+    <AuButtonGroup>
+      <AuLink @route="subsidy.index" class="au-c-button au-c-button--tertiary">
+        <AuIcon @icon="cross" @alignment="left" />Sluit
+      </AuLink>
+    </AuButtonGroup>
+  </Group>
+</AuToolbar>
+
+<AuToolbar @border="bottom" class="au-u-1-1" @size="large" as |Group|>
+  <Group
+    class="au-c-toolbar__group--row au-c-toolbar__group--align-top au-u-1-1"
+  >
+    <ul class="au-o-grid au-o-grid--tiny au-u-1-1">
+      <li class="au-o-grid__item au-u-1-2 au-u-1-3@small au-u-1-6@medium">
+        <AuLabel>Bestuurseenheid</AuLabel>
+        <p
+          {{!-- >{{this.organization.classificatie.label}}&nbsp;{{this.organization.naam}}</p> --}}
+        >{{this.organization.classificatie.label}}{{this.organization.naam}}</p>
+      </li>
+      <li class="au-o-grid__item au-u-1-2 au-u-1-3@small au-u-1-6@medium">
+        <AuLabel>Gewijzigd door</AuLabel>
+        <p>{{this.consumption.lastModifier.fullName}}</p>
+      </li>
+      <li class="au-o-grid__item au-u-1-2 au-u-1-3@small au-u-1-6@medium">
+        <AuLabel>Status</AuLabel>
+        <Subsidies::ConsumptionStatusPill @consumption={{this.consumption}} />
+      </li>
+      <li class="au-o-grid__item au-u-1-2 au-u-1-3@small au-u-1-6@medium">
+        <AuLabel>Aangemaakt op</AuLabel>
+        <p>{{moment-format this.consumption.created "DD-MM-YYYY"}}</p>
+      </li>
+      <li class="au-o-grid__item au-u-1-2 au-u-1-3@small au-u-1-6@medium">
+        <AuLabel>Bewerkt op</AuLabel>
+        <p>{{moment-format this.consumption.modified "DD-MM-YYYY — HH:mm"}}</p>
+      </li>
+      {{#if this.consumption.deadline.end}}
+        <li class="au-o-grid__item au-u-1-2 au-u-1-3@small au-u-1-6@medium">
+          <AuLabel>Indienen tot</AuLabel>
+          <p>
+            {{moment-format this.consumption.deadline.end "DD-MM-YYYY"}}
+          </p>
+        </li>
+      {{/if}}
+    </ul>
+  </Group>
+</AuToolbar>
+
+<AuBodyContainer id="content">
+  <SidebarContainer>
+    <:sidebar>
+      <nav>
+        <ul class="au-c-list-navigation">
+          {{#each
+            this.consumption.subsidyApplicationFlow.sortedDefinedSteps
+            as |step|
+          }}
+            <li class="au-c-list-navigation__item">
+              <LinkTo
+                @route="subsidy.detail.step"
+                @model={{step.id}}
+                class="au-c-list-navigation__link"
+                style="flex-direction: column; align-items: start;"
+                {{!template-lint-disable no-inline-styles}}
+              >
+                <div> {{step.subsidyProceduralStep.description}} </div>
+                <AuHelpText
+                  @skin="secondary"
+                  @size="small"
+                  style="margin: 0; line-height:normal"
+                  {{!template-lint-disable no-inline-styles}}
+                >Instuurbaar tot
+                  {{moment-format
+                    step.subsidyProceduralStep.period.end
+                    "DD MMMM YYYY"
+                  }}</AuHelpText>
+              </LinkTo>
+            </li>
+          {{/each}}
+        </ul>
+      </nav>
+    </:sidebar>
+    <:content>
+      {{outlet}}
+    </:content>
+  </SidebarContainer>
+</AuBodyContainer>

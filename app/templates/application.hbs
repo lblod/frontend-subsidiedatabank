@@ -1,23 +1,25 @@
-<AuMainHeader @homeRoute="index" @appTitle="Subsidiedatabank">
-  <li class="au-c-list-horizontal__item">
-    {{!-- <AuLink @route="help" @skin="secondary">
+<AuApp>
+  <AuMainHeader @homeRoute="index" @appTitle="Subsidiedatabank">
+    <li class="au-c-list-horizontal__item">
+      {{! <AuLink @route="help" @skin="secondary">
       <AuIcon @icon="question-circle" @alignment="left" />
       Help
-    </AuLink> --}}
-  </li>
-  <li class="au-c-list-horizontal__item">
-    {{#if this.session.isAuthenticated}}
-      <AuButton @skin="link" @icon="logout" {{on "click" this.logout}}>
-        Afmelden
-      </AuButton>
-    {{else}}
-      <LoginButton @isCompact={{true}} />
-    {{/if}}
-  </li>
-</AuMainHeader>
+    </AuLink> }}
+    </li>
+    <li class="au-c-list-horizontal__item">
+      {{#if this.session.isAuthenticated}}
+        <AuButton @skin="link" @icon="logout" {{on "click" this.logout}}>
+          Afmelden
+        </AuButton>
+      {{else}}
+        <LoginButton @isCompact={{true}} />
+      {{/if}}
+    </li>
+  </AuMainHeader>
 
-<main id="main" class="au-c-main-container">
-  {{outlet}}
-</main>
+  <main id="main" class="au-c-main-container">
+    {{outlet}}
+  </main>
+</AuApp>
 
 <AuModalContainer />

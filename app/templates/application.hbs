@@ -1,23 +1,48 @@
-<AuMainHeader @homeRoute="index" @appTitle="Subsidiedatabank">
-  <li class="au-c-list-horizontal__item">
-    {{!-- <AuLink @route="help" @skin="secondary">
-      <AuIcon @icon="question-circle" @alignment="left" />
-      Help
-    </AuLink> --}}
-  </li>
-  <li class="au-c-list-horizontal__item">
-    {{#if this.session.isAuthenticated}}
-      <AuButton @skin="link" @icon="logout" {{on "click" this.logout}}>
-        Afmelden
-      </AuButton>
-    {{else}}
-      <LoginButton @isCompact={{true}} />
-    {{/if}}
-  </li>
-</AuMainHeader>
+{{page-title this.appTitle}}
 
-<main id="main" class="au-c-main-container">
-  {{outlet}}
-</main>
+<AuApp>
+  <AuMainHeader
+    @brandLink={{unless
+      this.session.isAuthenticated
+      "https://www.vlaanderen.be/nl"
+    }}
+    @homeRoute="subsidy"
+    @appTitle={{this.appTitle}}
+  >
+    <li class="au-c-list-horizontal__item">
+      <AuLinkExternal
+        href="https://abb-vlaanderen.gitbook.io/informatie-lpdc/"
+        @icon="question-circle"
+        @skin="secondary"
+      >
+        Help
+      </AuLinkExternal>
+    </li>
+    <li class="au-c-list-horizontal__item">
+      {{#if this.session.isAuthenticated}}
+        <AuLink
+            @route="auth.logout"
+            @icon="logout"
+          >
+            Afmelden
+          </AuLink>
+      {{else}}
+        <LoginButton @isCompact={{true}} />
+      {{/if}}
+    </li>
+  </AuMainHeader>
 
-<AuModalContainer />
+  {{#if this.session.isAuthenticated}}
+    <AuMainContainer as |main|>
+      <main.content>
+        <AuBodyContainer>
+          <AuBodyContainer id="content">
+            {{outlet}}
+          </AuBodyContainer>
+        </AuBodyContainer>
+      </main.content>
+    </AuMainContainer>
+  {{else}}
+    {{outlet}}
+  {{/if}}
+</AuApp>

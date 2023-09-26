@@ -19,4 +19,10 @@ Router.map(function () {
     this.route('disclaimer');
     this.route('toegankelijkheidsverklaring');
   });
+
+  this.route('auth', function () {
+    this.route('login');
+    this.route('callback');
+    this.route('logout');
+  });
 });

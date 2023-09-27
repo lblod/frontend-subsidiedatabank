@@ -42,9 +42,7 @@ export default class SearchSubmissionsRoute extends Route {
       'page[number]': params.page,
     };
 
-    query.sort = params.sort
-      ? params.sort
-      : '-form-data.session-started-at-time';
+    query.sort = params.sort ? params.sort : '-modified';
 
     query.include = [
       'status',

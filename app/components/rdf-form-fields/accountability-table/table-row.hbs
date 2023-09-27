@@ -80,15 +80,7 @@
     {{/each}}
   </td>
   <td style="width: 250px" {{!template-lint-disable no-inline-styles}}>
-    {{#unless @disabled}}
-        <AuFileUpload
-          @maxFileSizeMB="1024"
-          @onFinishUpload={{this.addFile}}
-          @disabled={{@disabled}}
-        />
-        <br>
-    {{/unless}}
-     {{#each this.files as |fileField index|}}
+    {{#each this.files as |fileField|}}
       {{#if fileField.record}}
         {{#let fileField.record as |file|}}
           <li>
@@ -96,7 +88,6 @@
               @filename={{file.filename}}
               @fileSize={{file.humanReadableSize}}
               @downloadLink={{file.downloadLink}}
-              @onDelete={{unless @disabled (fn this.deleteFile file index)}}
             />
           </li>
         {{/let}}
@@ -104,10 +95,19 @@
     {{/each}}
 
   </td>
-  <td style="vertical-align: middle;" {{!template-lint-disable no-inline-styles}}>
-    <AuButton @hideText="true" @icon="bin" @skin="tertiary" @alert="true" @disabled={{@disabled}}
-      {{on "click" this.removeEntry}}>
-      <AuIcon @icon="bin" @alignment="left"/>
+  <td
+    style="vertical-align: middle;"
+    {{!template-lint-disable no-inline-styles}}
+  >
+    <AuButton
+      @hideText="true"
+      @icon="bin"
+      @skin="tertiary"
+      @alert="true"
+      @disabled={{@disabled}}
+      {{on "click" this.removeEntry}}
+    >
+      <AuIcon @icon="bin" @alignment="left" />
       Verwijder rij
     </AuButton>
   </td>

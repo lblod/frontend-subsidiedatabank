@@ -30,7 +30,6 @@ export default class CurrentSessionService extends Service {
       this.groupClassification = await this.group.classificatie;
 
       this.isLoaded = true;
-
     }
   }
 }

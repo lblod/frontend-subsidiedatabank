@@ -35,9 +35,8 @@ export default class SubsidyApplicationsRoute extends Route {
       'page[number]': params.page,
     };
 
-    query.sort = params.sort
-      ? params.sort
-      : '-form-data.session-started-at-time';
+    //sort by selected sort or default to last modified subsidy
+    query.sort = params.sort ? params.sort : '-modified';
 
     query.include = [
       'status',

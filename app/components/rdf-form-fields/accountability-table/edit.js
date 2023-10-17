@@ -143,29 +143,29 @@ export default class RdfFormFieldsAccountabilityTableEditComponent extends Input
     return files;
   }
 
-  // async retrieveFileField(uri) {
-  //   try {
-  //     const files = await this.store.query('file', {
-  //       'filter[:uri:]': uri,
-  //       page: { size: 1 },
-  //     });
-  //     const file = files.firstObject;
-  //     if (file) return new FileField({ record: file, errors: [] });
-  //     else
-  //       return new FileField({
-  //         record: null,
-  //         errors: ['Geen bestand gevonden'],
-  //       });
-  //   } catch (error) {
-  //     console.log(
-  //       `Failed to retrieve file with URI ${uri}: ${JSON.stringify(error)}`
-  //     );
-  //     return new FileField({
-  //       record: null,
-  //       errors: ['Ophalen van het bestand is mislukt'],
-  //     });
-  //   }
-  // }
+  async retrieveFileField(uri) {
+    try {
+      const files = await this.store.query('file', {
+        'filter[:uri:]': uri,
+        page: { size: 1 },
+      });
+      const file = files.at(0);
+      if (file) return new FileField({ record: file, errors: [] });
+      else
+        return new FileField({
+          record: null,
+          errors: ['Geen bestand gevonden'],
+        });
+    } catch (error) {
+      console.log(
+        `Failed to retrieve file with URI ${uri}: ${JSON.stringify(error)}`
+      );
+      return new FileField({
+        record: null,
+        errors: ['Ophalen van het bestand is mislukt'],
+      });
+    }
+  }
 
   createAccountabilityTable() {
     const uuid = uuidv4();

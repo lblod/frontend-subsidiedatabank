@@ -166,7 +166,7 @@ export default class RdfFormFieldsEngagementTableEditComponent extends InputFiel
     if (!this.hasEngagementTable) {
       this.createEngagementTable();
       this.entries = this.createEntries();
-      // super.updateValidations(); // Updates validation of the table
+      super.updateValidations(); // Updates validation of the table
     }
   }
 
@@ -208,7 +208,7 @@ export default class RdfFormFieldsEngagementTableEditComponent extends InputFiel
       additionalStaff: 0,
       volunteers: 0,
     });
-    entries.push(newEntry);
+    entries.pushObject(newEntry);
 
     this.initializeEntriesFields(entries);
     return entries;
@@ -288,7 +288,7 @@ export default class RdfFormFieldsEngagementTableEditComponent extends InputFiel
       });
     }
     this.hasBeenFocused = true; // Allows errors to be shown in canShowErrors()
-    // super.updateValidations(); // Updates validation of the table
+    super.updateValidations(); // Updates validation of the table
   }
 
   @action
@@ -311,7 +311,7 @@ export default class RdfFormFieldsEngagementTableEditComponent extends InputFiel
       });
     }
     this.hasBeenFocused = true; // Allows errors to be shown in canShowErrors()
-    // super.updateValidations(); // Updates validation of the table
+    super.updateValidations(); // Updates validation of the table
   }
 
   @action
@@ -333,7 +333,7 @@ export default class RdfFormFieldsEngagementTableEditComponent extends InputFiel
       });
     }
     this.hasBeenFocused = true; // Allows errors to be shown in canShowErrors()
-    // super.updateValidations(); // Updates validation of the table
+    super.updateValidations(); // Updates validation of the table
   }
 
   initializeEntriesFields(entries) {

@@ -135,7 +135,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
         share: detail.share,
         index: detail.index,
       });
-      entries.push(newEntry);
+      entries.pushObject(newEntry);
     });
 
     this.initializeEntriesFields(entries);
@@ -274,7 +274,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
       (entry) => parseInt(entry.object.value) > 0
     );
     if (!positiveCosts.length) {
-      this.errors.push({
+      this.errors.pushObject({
         message:
           'Minstens één kosten veld moet een waarde groter dan 0 bevatten.',
       });

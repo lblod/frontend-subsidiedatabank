@@ -114,40 +114,39 @@ export default class RdfFormFieldsAccountabilityTableTableRowComponent extends C
     );
   }
 
-  //   TODO: keep?
-  // async parseFileEntry(fileProperties) {
-  //   const files = [];
-  //   for (const file of fileProperties) {
-  //     const fileUri = file.object.value;
-  //     const fileObject = await this.retrieveFileField(fileUri);
-  //     files.push(fileObject);
-  //   }
-  //   return files;
-  // }
+  async parseFileEntry(fileProperties) {
+    const files = [];
+    for (const file of fileProperties) {
+      const fileUri = file.object.value;
+      const fileObject = await this.retrieveFileField(fileUri);
+      files.push(fileObject);
+    }
+    return files;
+  }
 
-  // async retrieveFileField(uri) {
-  //   try {
-  //     const files = await this.store.query('file', {
-  //       'filter[:uri:]': uri,
-  //       page: { size: 1 },
-  //     });
-  //     const file = files.get('firstObject');
-  //     if (file) return new FileField({ record: file, errors: [] });
-  //     else
-  //       return new FileField({
-  //         record: null,
-  //         errors: ['Geen bestand gevonden'],
-  //       });
-  //   } catch (error) {
-  //     console.log(
-  //       `Failed to retrieve file with URI ${uri}: ${JSON.stringify(error)}`
-  //     );
-  //     return new FileField({
-  //       record: null,
-  //       errors: ['Ophalen van het bestand is mislukt'],
-  //     });
-  //   }
-  // }
+  async retrieveFileField(uri) {
+    try {
+      const files = await this.store.query('file', {
+        'filter[:uri:]': uri,
+        page: { size: 1 },
+      });
+      const file = files.at(0);
+      if (file) return new FileField({ record: file, errors: [] });
+      else
+        return new FileField({
+          record: null,
+          errors: ['Geen bestand gevonden'],
+        });
+    } catch (error) {
+      console.log(
+        `Failed to retrieve file with URI ${uri}: ${JSON.stringify(error)}`
+      );
+      return new FileField({
+        record: null,
+        errors: ['Ophalen van het bestand is mislukt'],
+      });
+    }
+  }
 
   @keepLatestTask
   *search(searchData) {
@@ -178,43 +177,43 @@ export default class RdfFormFieldsAccountabilityTableTableRowComponent extends C
     }
   }
 
-  // @action
-  // async addFile(fileId) {
-  //   let file = await this.store.findRecord('file', fileId);
-  //   this.storeOptions.store.addAll([
-  //     {
-  //       subject: this.tableEntrySubject,
-  //       predicate: filesPredicate,
-  //       object: new NamedNode(file.uri),
-  //       graph: this.storeOptions.sourceGraph,
-  //     },
-  //   ]);
+  @action
+  async addFile(fileId) {
+    let file = await this.store.findRecord('file', fileId);
+    this.storeOptions.store.addAll([
+      {
+        subject: this.tableEntrySubject,
+        predicate: filesPredicate,
+        object: new NamedNode(file.uri),
+        graph: this.storeOptions.sourceGraph,
+      },
+    ]);
 
-  //   if (file) {
-  //     this.files.pushObject(new FileField({ record: file, errors: [] }));
-  //   } else {
-  //     this.files.pushObject(
-  //       new FileField({
-  //         record: null,
-  //         errors: ['Geen bestand gevonden'],
-  //       })
-  //     );
-  //   }
-  // }
+    if (file) {
+      this.files.pushObject(new FileField({ record: file, errors: [] }));
+    } else {
+      this.files.pushObject(
+        new FileField({
+          record: null,
+          errors: ['Geen bestand gevonden'],
+        })
+      );
+    }
+  }
 
-  // @action
-  // deleteFile(file, index) {
-  //   this.files.removeAt(index);
+  @action
+  deleteFile(file, index) {
+    this.files.removeAt(index);
 
-  //   this.storeOptions.store.removeStatements([
-  //     {
-  //       subject: this.tableEntrySubject,
-  //       predicate: filesPredicate,
-  //       object: new NamedNode(file.uri),
-  //       graph: this.storeOptions.sourceGraph,
-  //     },
-  //   ]);
-  // }
+    this.storeOptions.store.removeStatements([
+      {
+        subject: this.tableEntrySubject,
+        predicate: filesPredicate,
+        object: new NamedNode(file.uri),
+        graph: this.storeOptions.sourceGraph,
+      },
+    ]);
+  }
 
   @action
   removeEntry() {

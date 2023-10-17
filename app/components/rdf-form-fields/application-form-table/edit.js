@@ -468,10 +468,10 @@ export default class RdfFormFieldsApplicationFormTableEditComponent extends Inpu
       created: new Date().toISOString(),
     });
 
-    this.entries.push(newEntry);
+    this.entries.pushObject(newEntry);
 
     this.updateDefaultEntryFields(newEntry);
-    // super.updateValidations(); // Updates validation of the table
+    super.updateValidations(); // Updates validation of the table
   }
 
   @action
@@ -484,7 +484,7 @@ export default class RdfFormFieldsApplicationFormTableEditComponent extends Inpu
       });
     }
     this.hasBeenFocused = true; // Allows errors to be shown in canShowErrors()
-    // super.updateValidations(); // Updates validation of the table
+    super.updateValidations(); // Updates validation of the table
   }
 
   @action
@@ -509,7 +509,7 @@ export default class RdfFormFieldsApplicationFormTableEditComponent extends Inpu
       });
     }
     this.hasBeenFocused = true; // Allows errors to be shown in canShowErrors()
-    // super.updateValidations(); // Updates validation of the table
+    super.updateValidations(); // Updates validation of the table
   }
 
   @action
@@ -534,7 +534,7 @@ export default class RdfFormFieldsApplicationFormTableEditComponent extends Inpu
       });
     }
     this.hasBeenFocused = true; // Allows errors to be shown in canShowErrors()
-    // super.updateValidations(); // Updates validation of the table
+    super.updateValidations(); // Updates validation of the table
   }
 
   @action
@@ -561,7 +561,7 @@ export default class RdfFormFieldsApplicationFormTableEditComponent extends Inpu
       });
     }
     this.hasBeenFocused = true; // Allows errors to be shown in canShowErrors()
-    // super.updateValidations(); // Updates validation of the table
+    super.updateValidations(); // Updates validation of the table
   }
 
   @action
@@ -580,7 +580,7 @@ export default class RdfFormFieldsApplicationFormTableEditComponent extends Inpu
     this.updateAangevraagdBedrag();
 
     this.hasBeenFocused = true; // Allows errors to be shown in canShowErrors()
-    // super.updateValidations(); // Updates validation of the table
+    super.updateValidations(); // Updates validation of the table
   }
 
   isEmpty(value) {

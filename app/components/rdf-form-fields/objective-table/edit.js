@@ -140,7 +140,7 @@ export default class RdfFormFieldsObjectiveTableEditComponent extends InputField
     );
 
     if (!this.cellHasValue()) {
-      this.errors.push({
+      this.errors.pushObject({
         message: 'Minstens één veld moet een waarde groter dan 0 bevatten.',
       });
       this.updateTripleObject(
@@ -149,7 +149,7 @@ export default class RdfFormFieldsObjectiveTableEditComponent extends InputField
         null
       );
     } else if (invalidRow) {
-      this.errors.push({
+      this.errors.pushObject({
         message: 'Een van de rijen is niet correct ingevuld',
       });
       this.updateTripleObject(

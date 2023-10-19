@@ -1,0 +1,52 @@
+<div class="au-c-main-container__content au-c-main-container__content--scroll">
+  <div class="au-c-body-container">
+    <div id="content" class="au-c-body-container">
+      <div class="au-o-grid au-o-grid--flush au-o-grid--fixed">
+        <div class="au-o-grid__item au-u-6-6">
+          <div class="au-c-body-container">
+            <AuToolbar @size="small" @border="bottom" as |Group|>
+              <Group>
+                <AuHeading @level="1" @skin="2" class="au-u-margin-top-tiny au-u-margin-bottom-tiny">
+                  Subsidie Aanvragen
+                </AuHeading>
+              </Group>
+            </AuToolbar>
+            <div class="au-c-body-container">
+              <div class="au-o-grid au-o-grid--flush au-o-grid--fixed">
+
+                <div class="au-o-grid__item au-1-1 au-u-2-5@small au-u-1-4@medium">
+                  <div class="au-c-body-container">
+                    <SearchQueries::FilterForm @queryParams={{"TODO"}} /> 
+                  </div>
+                </div>
+                <div class="au-o-grid__item au-1-1 au-u-3-5@small au-u-3-4@medium">
+                  <div class="au-c-body-container">
+                   <AuDataTable
+                      @content={{this.model}}
+                      @isLoading={{this.isLoadingModel}}
+                      @noDataMessage="Geen inzendingen gevonden"
+                      @sort={{this.sort}}
+                      @page={{this.page}}
+                      @size={{this.size}} as |t|>
+                    <t.content class="au-c-data-table__table--small" as |c|>
+                      <c.header>
+                        <SearchTable::Resource::Header @sort={{@sort}} />
+                      </c.header>
+                      <c.body as |consumption|>
+                        <SearchTable::Resource::Row @consumption={{consumption}} />
+                      </c.body>
+                      <tr>
+                    </tr>
+                    </t.content>
+                  </AuDataTable>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

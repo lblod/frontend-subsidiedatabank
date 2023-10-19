@@ -21,4 +21,13 @@ Router.map(function () {
     this.route('callback');
     this.route('logout');
   });
+  this.route('subsidy', function () {
+    this.route('applications', function () {
+      this.route('edit', { path: '/:id' }, function () {
+        this.route('step', { path: '/steps/:step_id' }, function () {
+          this.route('edit', { path: '/forms/:form_id' });
+        });
+      });
+    });
+  });
 });

@@ -1,6 +1,5 @@
 import Route from '@ember/routing/route';
 import { isEmpty } from '@ember/utils';
-import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import DataTableRouteMixin from 'ember-data-table/mixins/route';
 

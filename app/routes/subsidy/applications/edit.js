@@ -49,7 +49,8 @@ export default class SubsidyApplicationsEditRoute extends Route {
 
     return {
       consumption,
-      organization: consumption.participations.firstObject.participatingBestuurseenheid,
+      organization:
+        consumption.participations.firstObject.participatingBestuurseenheid,
     };
   }
 

@@ -26,6 +26,7 @@ Router.map(function () {
       this.route('edit', { path: '/:id' }, function () {
         this.route('step', { path: '/steps/:step_id' }, function () {
           this.route('edit', { path: '/forms/:form_id' });
+          this.route('new');
         });
       });
     });

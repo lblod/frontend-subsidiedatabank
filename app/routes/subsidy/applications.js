@@ -74,12 +74,14 @@ export default class SearchSubmissionsRoute extends Route {
 
     // Override the standard params.subsidiestatus filtering by regexing for the id and using that instead
     // Using the id instead of the uri, because that's the only way currently to pass multiple values comma seperated
-    if (params.subsidieStatus){
+    if (params.subsidieStatus) {
       const subsidieStatusUriList = params.subsidieStatus.split(',');
-      const subsidieStatusIdList = subsidieStatusUriList.map(p => {
-        const parts = p.split('/');
-        return parts[parts.length - 1];
-      }).join(',');
+      const subsidieStatusIdList = subsidieStatusUriList
+        .map((p) => {
+          const parts = p.split('/');
+          return parts[parts.length - 1];
+        })
+        .join(',');
       query['filter[status][:id:]'] = subsidieStatusIdList;
     }
 

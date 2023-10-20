@@ -29,6 +29,13 @@ export default class SubsidyDetailStepIndexRoute extends Route {
         step.id,
         form.id
       );
+    } else {
+      // TODO: creating a new form here..
+      return this.router.replaceWith(
+        'subsidy.detail.step.new',
+        consumption.id,
+        step.id
+      );
     }
   }
 }

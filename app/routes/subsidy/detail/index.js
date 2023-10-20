@@ -19,6 +19,7 @@ export default class SubsidyDetailIndexRoute extends Route {
       return this.redirectToStep(consumption, active);
     }
 
+    await consumption.subsidyApplicationFlow.get('definedSteps');
     const steps = await consumption.subsidyApplicationFlow.get(
       'sortedDefinedSteps'
     );
@@ -31,8 +32,8 @@ export default class SubsidyDetailIndexRoute extends Route {
      */
     if (consumption.get('status.isSent')) {
       // TODO: use lastObject but it didn't seem to work
-      const last = steps[steps.length - 1];
-      // const last = steps.lastObject;
+      // const last = steps[steps.length - 1];
+      const last = steps.lastObject;
       return this.redirectToStep(consumption, last);
     }
 

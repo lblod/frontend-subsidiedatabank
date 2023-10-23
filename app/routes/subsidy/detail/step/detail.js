@@ -13,7 +13,6 @@ export default class SubsidyDetailStepDetailRoute extends Route {
   @service store;
 
   async model({ form_id: semanticFormID }) {
-    console.log('semanticFormID', semanticFormID);
     let { consumption } = this.modelFor('subsidy.detail');
     let { step } = this.modelFor('subsidy.detail.step');
     let semanticForm = await this.store.findRecord(

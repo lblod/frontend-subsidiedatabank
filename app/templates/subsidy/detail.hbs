@@ -45,10 +45,6 @@
         <p>{{this.organization.classificatie.label}}&nbsp;{{this.organization.naam}}</p>
       </li>
       <li class="au-o-grid__item au-u-1-2 au-u-1-3@small au-u-1-6@medium">
-        <AuLabel>Gewijzigd door</AuLabel>
-        <p>{{this.consumption.lastModifier.fullName}}</p>
-      </li>
-      <li class="au-o-grid__item au-u-1-2 au-u-1-3@small au-u-1-6@medium">
         <AuLabel>Status</AuLabel>
         <Subsidies::ConsumptionStatusPill @consumption={{this.consumption}} />
       </li>

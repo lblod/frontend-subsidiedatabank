@@ -31,16 +31,14 @@ export default class SubsidyDetailIndexRoute extends Route {
      * NOTE: if no active-step was found and the consumption has been sent we transition to the last step.
      */
     if (consumption.get('status.isSent')) {
-      // TODO: use lastObject but it didn't seem to work
-      // const last = steps[steps.length - 1];
-      const last = steps.lastObject;
+      const last = steps.at(steps.length - 1);
       return this.redirectToStep(consumption, last);
     }
 
     /**
      * NOTE: we default back to the first step.
      */
-    const first = steps.firstObject;
+    const first = steps.at(0);
     return this.redirectToStep(consumption, first);
   }
 

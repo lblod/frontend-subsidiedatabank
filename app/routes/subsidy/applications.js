@@ -84,8 +84,13 @@ export default class SubsidyApplicationsRoute extends Route {
   }
 
   @action
-  loading(/* transition, origin */) {
-    // Cancel default loading template
-    return;
+  loading(transition) {
+    // eslint-disable-next-line ember/no-controller-access-in-routes
+    let controller = this.controllerFor('subsidy.applications');
+    controller.set('isLoadingModel', true);
+
+    transition.finally(function () {
+      controller.set('isLoadingModel', false);
+    });
   }
 }

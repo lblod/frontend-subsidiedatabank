@@ -26,7 +26,6 @@ export default class SubsidyApplicationsRoute extends Route {
     this.filter = params;
     this.lastParams.stageLive(params);
 
-
     return this.search(params);
   }
 

@@ -35,7 +35,7 @@ module.exports = function (environment) {
   };
 
   if (environment === 'development') {
-    ENV.featureFlags['detailView'] = true; 
+    ENV.featureFlags['detailView'] = true;
   }
 
   if (environment === 'test') {

@@ -7,11 +7,6 @@ import { tracked } from '@glimmer/tracking';
 import { timeout } from 'ember-concurrency';
 import { dropTask, task } from 'ember-concurrency-decorators';
 import fetch from 'fetch';
-import { validateForm } from '@lblod/ember-submission-form-fields';
-import {
-  NEW_STATUS,
-  CONCEPT_STATUS,
-} from '../../../../models/submission-document-status';
 
 // TODO: cleanup unnecessary code
 export default class SubsidyDetailStepDetailController extends Controller {

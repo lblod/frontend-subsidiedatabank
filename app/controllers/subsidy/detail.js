@@ -1,7 +1,5 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { task } from 'ember-concurrency-decorators';
-import fetch from 'fetch';
 
 export default class SubsidyDetailController extends Controller {
   @service router;

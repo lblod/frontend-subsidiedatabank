@@ -17,6 +17,7 @@ module.exports = function (environment) {
     // Feature flags for the application to enable/disable certain features
     featureFlags: {
       detailView: false,
+      oproepLabel: false,
     },
 
     APP: {
@@ -36,6 +37,7 @@ module.exports = function (environment) {
 
   if (environment === 'development') {
     ENV.featureFlags['detailView'] = true;
+    ENV.featureFlags['oproepLabel'] = true;
   }
 
   if (environment === 'test') {

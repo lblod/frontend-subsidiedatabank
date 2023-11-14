@@ -1,5 +1,10 @@
 <td>
   {{@consumption.subsidyMeasureOffer.title}}
+  {{#if @consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.label}}
+    <AuHelpText @skin="secondary" class="au-u-margin-top-none">
+      {{@consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.label}}
+    </AuHelpText>
+  {{/if}}
 </td>
 <td>
   {{!-- template-lint-disable no-array-prototype-extensions --}}

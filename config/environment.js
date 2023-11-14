@@ -14,6 +14,11 @@ module.exports = function (environment) {
       },
     },
 
+    // Feature flags for the application to enable/disable certain features
+    featureFlags: {
+      detailView: false,
+    },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
@@ -30,11 +35,7 @@ module.exports = function (environment) {
   };
 
   if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.featureFlags['detailView'] = true; 
   }
 
   if (environment === 'test') {
@@ -50,7 +51,6 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
   }
 
   return ENV;

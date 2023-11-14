@@ -1,8 +1,8 @@
 <td>
   {{@consumption.subsidyMeasureOffer.title}}
-  {{#if @consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.title}}
+  {{#if @consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.label}}
     <AuHelpText @skin="secondary" class="au-u-margin-top-none">
-      ({{@consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.title}})
+      {{@consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.label}}
     </AuHelpText>
   {{/if}}
 </td>

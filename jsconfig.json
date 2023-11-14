@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "frontend-subsidiedatabank/*": ["./app/*"],
+      "frontend-subsidiedatabank/config/environment": ["./app/config/environment"], // Helps autocomplete the config path even though the file doesn't exist on disk
+      "frontend-subsidiedatabank/tests/*": ["./tests/*"]
+    },
+    "target": "es6"
+  },
+  "exclude": ["dist", "node_modules", "vendor"]
+}

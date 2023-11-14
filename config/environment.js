@@ -14,6 +14,11 @@ module.exports = function (environment) {
       },
     },
 
+    // Feature flags for the application to enable/disable certain features
+    featureFlags: {
+      detailView: true,
+    },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
@@ -51,6 +56,7 @@ module.exports = function (environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV.featureFlags['detailView'] = false; // make sure to disable the detailsView in production for now
   }
 
   return ENV;

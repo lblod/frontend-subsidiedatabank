@@ -21,19 +21,11 @@ import FinancingTotalsComponent from 'frontend-subsidiedatabank/components/rdf-f
 export default class SubsidyDetailRoute extends Route {
   @service store;
   @service currentSession;
-  @service features;
 
   constructor() {
     super(...arguments);
 
     this.registerTableFields();
-  }
-
-  // Make the detailview unreachable with the feature flag
-  beforeModel() {
-    if (!this.features.get('detailView')) {
-      this.transitionTo('subsidy.applications');
-    }
   }
 
   async model({ id: consumptionID }) {

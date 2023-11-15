@@ -1,9 +1,12 @@
-import Model, { attr } from '@ember-data/model';
+import Model, { attr, hasMany } from '@ember-data/model';
 
 export default class SubsidyMeasureOfferModel extends Model {
-  @attr() title;
+  @attr title;
+  @attr externalInformation;
 
-  @attr() subsidyApplicationFlow;
-  @attr() subsidyApplicationFlowStep;
-  @attr() subsidyMeasureConsumptionStatus;
+  @hasMany('subsidy-measure-offer-series', {
+    async: true,
+    inverse: 'subsidyMeasureOffer',
+  })
+  series;
 }

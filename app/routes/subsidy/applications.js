@@ -6,7 +6,7 @@ import { tracked } from '@glimmer/tracking';
 import { getQueryParams } from '../../utils/filter-form-helpers';
 import { inject as service } from '@ember/service';
 
-export default class SearchSubmissionsRoute extends Route {
+export default class SubsidyApplicationsRoute extends Route {
   @service store;
   @tracked filter;
 
@@ -25,14 +25,6 @@ export default class SearchSubmissionsRoute extends Route {
   async model(params) {
     this.filter = params;
     this.lastParams.stageLive(params);
-
-    if (
-      this.lastParams.anyFieldChanged(
-        Object.keys(params).filter((key) => key !== 'page')
-      )
-    ) {
-      params.page = 0;
-    }
 
     return this.search(params);
   }
@@ -101,8 +93,13 @@ export default class SearchSubmissionsRoute extends Route {
   }
 
   @action
-  loading(/* transition, origin */) {
-    // Cancel default loading template
-    return;
+  loading(transition) {
+    // eslint-disable-next-line ember/no-controller-access-in-routes
+    let controller = this.controllerFor('subsidy.applications');
+    controller.set('isLoadingModel', true);
+
+    transition.finally(function () {
+      controller.set('isLoadingModel', false);
+    });
   }
 }

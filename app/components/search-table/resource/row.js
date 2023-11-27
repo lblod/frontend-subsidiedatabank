@@ -4,7 +4,7 @@ import { action } from '@ember/object';
 
 // Initialize the allowedTitles set with desired titles
 const allowedTitles = new Set([
-  'Lokaal Energie- en Klimaatpact 1.0',
+  // 'Lokaal Energie- en Klimaatpact 1.0',
   // Add more titles as needed
 ]);
 

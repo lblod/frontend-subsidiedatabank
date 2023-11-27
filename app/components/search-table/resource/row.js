@@ -1,22 +1,15 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { action } from '@ember/object';
 
-// Initialize the allowedTitles set with desired titles
-const allowedTitles = new Set([
-  // 'Lokaal Energie- en Klimaatpact 1.0',
-  // Add more titles as needed
+const allowedSubsidies = new Set([
+  "64d40351-8128-464f-990f-41066154583e", //Lokaal Energie- en Klimaatpact 1.0
 ]);
 
 export default class RowComponent extends Component {
   @service features;
 
-  // temporary solution to show incrementally more detail views, remove in the future
-  @action
-  showDetailView(title) {
-    if (!this.features.get('detailView')) return false; // if detailView feature flag disabled, disable all detailviews
-
-    // Check if the provided title is in the allowedTitles set
-    return allowedTitles.has(title);
+  get isViewableSubsidy() {
+    const currentSubsidy = this.args.consumption.subsidyMeasureOffer.get('id')
+    return allowedSubsidies.has(currentSubsidy);
   }
 }

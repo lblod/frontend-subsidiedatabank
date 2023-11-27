@@ -13,16 +13,20 @@ module.exports = function (environment) {
         // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
       },
     },
+    APP: {
+      // Here you can pass flags/options to your application instance
+      // when it is created
+    },
 
     // Feature flags for the application to enable/disable certain features
     featureFlags: {
       detailView: false,
       oproepLabel: false,
     },
-
-    APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
+    // Analytics
+    'ember-plausible': {
+      domain: '{{PLAUSIBLE_APP_DOMAIN}}',
+      apiHost: '{{PLAUSIBLE_API_ENDPOINT}}',
     },
 
     acmidm: {

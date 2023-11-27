@@ -1,6 +1,6 @@
 <td>
   {{!-- FEATURE-FLAG --}}
-  {{#if this.features.detailView}}
+  {{#if (this.showDetailView @consumption.subsidyMeasureOffer.title)}}
     <LinkTo @route="subsidy.detail" @model={{@consumption.id}} class="au-c-link">
       {{@consumption.subsidyMeasureOffer.title}}
     </LinkTo>
@@ -16,7 +16,6 @@
       </AuHelpText>
     {{/if}}
   {{/if}}
-  
 </td>
 <td>
   {{! template-lint-disable no-array-prototype-extensions }}

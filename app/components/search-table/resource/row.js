@@ -10,6 +10,7 @@ export default class RowComponent extends Component {
 
   get isViewableSubsidy() {
     const currentSubsidy = this.args.consumption.subsidyMeasureOffer.get('id');
+    return true;
     return allowedSubsidies.has(currentSubsidy);
   }
 }

@@ -21,7 +21,7 @@ export default class SubsidyDetailStepIndexRoute extends Route {
     /**
      * NOTE: for now hardcoded with the assumption "one step has only one form"
      */
-    const form = forms.firstObject;
+    const form = forms[0];
     if (form) {
       return this.router.replaceWith(
         'subsidy.detail.step.detail',

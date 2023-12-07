@@ -8,13 +8,10 @@
       {{@consumption.subsidyMeasureOffer.title}}
   {{/if}}
 
-  {{!-- FEATURE-FLAG --}}
-  {{#if this.features.oproepLabel }}
-    {{#if @consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.label }}
-      <AuHelpText @skin="secondary" class="au-u-margin-top-none">
-        {{@consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.label}}
-      </AuHelpText>
-    {{/if}}
+  {{#if @consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.label }}
+    <AuHelpText @skin="secondary" class="au-u-margin-top-none">
+      {{@consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.label}}
+    </AuHelpText>
   {{/if}}
 </td>
 <td>

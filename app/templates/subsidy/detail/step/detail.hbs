@@ -51,34 +51,6 @@
     <Group class="au-u-margin-top-small au-u-margin-bottom-small">
       {{! DEFAULT CRUD CASE }}
       {{#if this.canSubmit}}
-        {{!-- <AuButton
-          @disabled={{if
-            (or
-              this.saveConcept.isRunning
-              this.submit.isRunning
-              this.delete.isRunning
-            )
-            "true"
-          }}
-          @loading={{if this.submit.isRunning "true"}}
-          {{on "click" (perform this.submit)}}
-        >Verstuur naar de Vlaamse overheid
-        </AuButton>
-        <AuButton
-          @disabled={{if
-            (or
-              this.saveConcept.isRunning
-              this.submit.isRunning
-              this.delete.isRunning
-            )
-            "true"
-          }}
-          @loading={{if this.saveConcept.isRunning "true"}}
-          @skin={{"secondary"}}
-          {{on "click" (perform this.saveConcept)}}
-        >
-          Bewaar als concept
-        </AuButton> --}}
       {{else}}
         {{! SENDING NOT POSSIBLE }}
         {{#if this.submitted}}
@@ -138,21 +110,6 @@
                     </p>
                   </AuContent>
                 </AuAlert>
-                {{!-- <AuButton
-                  @disabled={{if
-                    (or
-                      this.saveConcept.isRunning
-                      this.submit.isRunning
-                      this.delete.isRunning
-                    )
-                    "true"
-                  }}
-                  @loading={{if this.saveConcept.isRunning "true"}}
-                  @skin={{"secondary"}}
-                  {{on "click" (perform this.saveConcept)}}
-                >
-                  Bewaar als concept
-                </AuButton> --}}
               </div>
             {{else if this.submittablePeriodExpired}}
               <div>

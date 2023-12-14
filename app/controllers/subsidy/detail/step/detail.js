@@ -76,7 +76,6 @@ export default class SubsidyDetailStepDetailController extends Controller {
 
   get submittablePeriodNeedsToStart() {
     const today = new Date();
-    console.log('dddd', this.deadline);
     const begin = this.deadline.begin;
     if (!begin) {
       return true;

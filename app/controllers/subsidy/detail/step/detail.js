@@ -54,6 +54,51 @@ export default class SubsidyDetailStepDetailController extends Controller {
     return this.model.step;
   }
 
+  get isActiveStep() {
+    return (
+      this.consumption.activeSubsidyApplicationFlowStep.get('id') ===
+      this.step.id
+    );
+  }
+
+  get canSubmit() {
+    return (
+      (!this.submitted && this.isActiveStep && this.isInSubmittablePeriod) ||
+      this.testMode
+    );
+  }
+
+  get isInSubmittablePeriod() {
+    return !(
+      this.submittablePeriodNeedsToStart || this.submittablePeriodExpired
+    );
+  }
+
+  get submittablePeriodNeedsToStart() {
+    const today = new Date();
+    console.log('dddd', this.deadline);
+    const begin = this.deadline.begin;
+    if (!begin) {
+      return true;
+    } else {
+      return today < begin;
+    }
+  }
+
+  get submittablePeriodExpired() {
+    const today = new Date();
+    const end = this.deadline.end;
+    if (!end) {
+      return false;
+    } else {
+      return today > end;
+    }
+  }
+
+  get deadline() {
+    return this.model.step.get('deadline').content;
+  }
+
   reset() {
     this.error = null;
     this.forceShowErrors = false;

@@ -21,7 +21,6 @@ module.exports = function (environment) {
     // Feature flags for the application to enable/disable certain features
     featureFlags: {
       detailView: false,
-      oproepLabel: false,
     },
     // Analytics
     'ember-plausible': {
@@ -41,7 +40,6 @@ module.exports = function (environment) {
 
   if (environment === 'development') {
     ENV.featureFlags['detailView'] = true;
-    ENV.featureFlags['oproepLabel'] = true;
   }
 
   if (environment === 'test') {

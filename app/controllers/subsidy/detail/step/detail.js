@@ -4,8 +4,7 @@ import { action } from '@ember/object';
 
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { timeout } from 'ember-concurrency';
-import { dropTask, task } from 'ember-concurrency-decorators';
+import { timeout, dropTask, task } from 'ember-concurrency';
 import fetch from 'fetch';
 
 // TODO: cleanup unnecessary code

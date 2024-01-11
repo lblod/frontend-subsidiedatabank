@@ -1,9 +1,9 @@
-@import "ember-appuniversum";
+@import "@appuniversum/ember-appuniversum/styles";
 @import "shame";
 
 
 // COMPONENTS
-@import "ember-appuniversum/a-components";
+@import "@appuniversum/ember-appuniversum/styles/a-components";
 @import "project/c-data-list";
 @import "project/c-document-status-pills";
 @import "project/c-rich-text-editor";

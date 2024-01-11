@@ -23,9 +23,7 @@ export default class SubsidyDetailIndexRoute extends Route {
     const steps = await consumption.subsidyApplicationFlow.get(
       'sortedDefinedSteps'
     );
-    // const steps = await consumption.subsidyApplicationFlow.get(
-    //   'sortedDefinedSteps'
-    // );
+
     if (!steps || steps.length === 0) throw 'corrupt flow: no steps defined';
     /**
      * NOTE: if no active-step was found and the consumption has been sent we transition to the last step.

@@ -39,7 +39,7 @@
     "@glimmer/tracking": "^1.1.2",
     "@lblod/ember-acmidm-login": "2.0.0",
     "@lblod/ember-mock-login": "^0.10.0",
-    "@lblod/ember-submission-form-fields": "^2.15.0",
+    "@lblod/ember-submission-form-fields": "^2.17.2",
     "broccoli-asset-rev": "^3.0.0",
     "concurrently": "^8.2.2",
     "ember-auto-import": "^2.7.2",

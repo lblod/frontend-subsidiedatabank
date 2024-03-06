@@ -42,6 +42,10 @@ module.exports = function (environment) {
     ENV.featureFlags['detailView'] = true;
   }
 
+  if (environment === 'production') {
+    ENV.featureFlags['detailView'] = true;
+  }
+
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';

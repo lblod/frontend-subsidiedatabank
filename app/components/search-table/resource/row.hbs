@@ -1,9 +1,11 @@
 <td>
   {{!-- FEATURE-FLAG --}}
   {{#if (and this.features.detailView this.isViewableSubsidy)}}
-    <LinkTo @route="subsidy.detail" @model={{@consumption.id}} class="au-c-link">
-      {{@consumption.subsidyMeasureOffer.title}}
-    </LinkTo>
+    {{#unless (eq @consumption.status.label "Concept")}}
+      <LinkTo @route="subsidy.detail" @model={{@consumption.id}} class="au-c-link">
+        {{@consumption.subsidyMeasureOffer.title}}
+      </LinkTo>
+    {{/unless}}
   {{else}}
       {{@consumption.subsidyMeasureOffer.title}}
   {{/if}}

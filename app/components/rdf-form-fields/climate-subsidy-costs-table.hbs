@@ -1,29 +1,3 @@
-<dl class="au-o-grid au-u-margin-bottom-large">
-  <div class="au-o-grid__item au-u-1-2 au-u-1-6@medium">
-    <dt class="au-c-label">Aantal inwoners </dt>
-    <dd>{{this.populationCount}}</dd>
-  </div>
-
-  <div class="au-o-grid__item au-u-1-2 au-u-2-6@medium">
-    <dt class="au-c-label">Totaal trekkingsrecht</dt>
-    <dd>{{convert-to-currency this.drawingRight}}</dd>
-  </div>
-
-  <div class="au-o-grid__item au-u-1-2 au-u-2-6@medium">
-    <dt class="au-c-label">Trekkingsrecht te verdelen</dt>
-    <dd class={{if this.hasErrors "au-u-error"}}>
-      {{convert-to-currency this.restitutionToDestribute}}
-    </dd>
-  </div>
-</dl>
-
-<AuLabel @error={{this.hasErrors}} for={{this.inputFor}}>
-  {{@field.label}}
-</AuLabel>
-{{#each this.errors as |error|}}
-  <AuHelpText @error={{true}}>{{error.message}}</AuHelpText>
-{{/each}}
-
 <table
   class="data-table data-table--zebra data-table--tight au-u-margin-top-small"
 >

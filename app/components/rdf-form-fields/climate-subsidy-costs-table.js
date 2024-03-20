@@ -119,14 +119,14 @@ export default class RdfFormFieldsClimateSubsidyCostsTableComponent extends Inpu
       DBPEDIA('populationTotal'),
       undefined,
       metaGraph
-    )[0].object.value;
+    )[0]?.object?.value;
 
     const drawingRight = this.args.formStore.match(
       undefined,
       LBLOD_SUBSIDIE('drawingRight'),
       undefined,
       metaGraph
-    )[0].object.value;
+    )[0]?.object?.value;
 
     const lekpValidation =
       this.args.formStore.match(

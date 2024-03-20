@@ -8,10 +8,15 @@ const allowedSubsidies = new Set([
    'b03215cf-2206-493c-b534-0546a2479eef', // Oekraine Opknapwerken slaapplekken
 ]);
 
+
 export default class RowComponent extends Component {
   @service features;
 
   get isViewableSubsidy() {
+    if (this.args.consumption.status.get('id') == "6373b454-22b6-4b65-b98f-3d86541f2fcf") {
+      return false;
+    }
+
     const currentSubsidy = this.args.consumption.subsidyMeasureOffer.get('id');
     return allowedSubsidies.has(currentSubsidy);
   }

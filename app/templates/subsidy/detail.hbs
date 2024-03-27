@@ -78,25 +78,7 @@
             as |step|
           }}
             <li class="au-c-list-navigation__item">
-              <LinkTo
-                @route="subsidy.detail.step"
-                @model={{step.id}}
-                class="au-c-list-navigation__link"
-                style="flex-direction: column; align-items: start;"
-                {{!template-lint-disable no-inline-styles}}
-              >
-                <div> {{step.subsidyProceduralStep.description}} </div>
-                <AuHelpText
-                  @skin="secondary"
-                  @size="small"
-                  style="margin: 0; line-height:normal"
-                  {{!template-lint-disable no-inline-styles}}
-                >Instuurbaar tot
-                  {{moment-format
-                    step.subsidyProceduralStep.period.end
-                    "DD MMMM YYYY"
-                  }}</AuHelpText>
-              </LinkTo>
+              <Subsidies::ApplicationFlowStepLink @currentStep={{step}} @activeStep={{this.consumption.activeSubsidyApplicationFlowStep}}/>
             </li>
           {{/each}}
         </ul>

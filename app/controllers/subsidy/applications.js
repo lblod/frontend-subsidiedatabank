@@ -6,6 +6,6 @@ export default class SubsidyApplicationsController extends Controller {
   @service currentSession;
 
   page = 0;
-  size = 15;
+  size = 20;
   sort = '-modified';
 }

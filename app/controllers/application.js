@@ -5,6 +5,8 @@ export default class ApplicationController extends Controller {
   @service session;
   @service() router;
 
+  appTitle = 'Subsidiedatabank';
+
   logout = () => {
     this.session.invalidate();
   };

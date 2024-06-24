@@ -8,4 +8,11 @@ export default class ApplicationController extends Controller {
   logout = () => {
     this.session.invalidate();
   };
+
+  get isIndexOrLoading() {
+    return (
+      this.router.currentRouteName === 'subsidy.applications' ||
+      this.router.currentRouteName === 'loading'
+    );
+  }
 }

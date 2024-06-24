@@ -17,12 +17,9 @@
     </li>
     <li class="au-c-list-horizontal__item">
       {{#if this.session.isAuthenticated}}
-        <AuLink
-            @route="auth.logout"
-            @icon="logout"
-          >
-            Afmelden
-          </AuLink>
+        <AuLink @route="auth.logout" @icon="logout">
+          Afmelden
+        </AuLink>
       {{else}}
         <LoginButton @isCompact={{true}} />
       {{/if}}
@@ -33,6 +30,22 @@
     <AuMainContainer as |main|>
       <main.content>
         <AuBodyContainer>
+          {{#unless (eq this.router.currentRouteName "subsidy.applications")}}
+            <AuToolbar @size="medium" @skin="tint" @border="bottom" as |Group|>
+              <Group>
+                <ul
+                  class="au-c-list-horizontal au-c-list-horizontal--small hide-on-print"
+                >
+                  <li class="au-c-list-horizontal__item">
+                    <AuLink @route="subsidy.applications" @icon="arrow-left">
+                      Terug naar overzicht
+                    </AuLink>
+                  </li>
+                  <BreadCrumb />
+                </ul>
+              </Group>
+            </AuToolbar>
+          {{/unless}}
           <AuBodyContainer id="content">
             {{outlet}}
           </AuBodyContainer>

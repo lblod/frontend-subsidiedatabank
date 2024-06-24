@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default class ApplicationController extends Controller {
   @service session;
+  @service() router;
 
   logout = () => {
     this.session.invalidate();

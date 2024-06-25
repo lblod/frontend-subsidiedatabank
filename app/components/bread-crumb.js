@@ -10,10 +10,6 @@ export default class SharedBreadCrumbComponent extends Component {
       crumbs: [{ label: 'Subsidiebeheer' }],
     },
     {
-      route: 'subsidy.detail.step.new',
-      crumbs: [{ label: 'Bekijk subsidieaanvraag' }],
-    },
-    {
       route: 'subsidy.detail.step.detail',
       crumbs: [{ label: 'Bekijk subsidieaanvraag' }],
     },

@@ -1,10 +1,10 @@
-<div class="au-c-body-container au-c-body-container--scroll">
+<div id="subsidyParent" class="au-c-body-container au-c-body-container--scroll">
 
   <div class="au-o-box">
     <RdfForm
       @groupClass="au-o-grid__item"
       @form={{this.form}}
-      {{!-- Show is used to switch between 'edit' and 'show' state, setting this to true makes the forms readonly --}}
+      {{! Show is used to switch between 'edit' and 'show' state, setting this to true makes the forms readonly }}
       @show={{true}}
       @graphs={{this.graphs}}
       @sourceNode={{this.sourceNode}}
@@ -16,7 +16,7 @@
     />
   </div>
 
-  <AuToolbar @size="large" as |Group|>
+  <AuToolbar class="invisible-on-print" @size="large" as |Group|>
     {{#if (and this.forceShowErrors (not this.isValidForm))}}
       <Group class="au-c-toolbar__group--row">
         <AuAlert
@@ -51,7 +51,7 @@
     <Group class="au-u-margin-top-small au-u-margin-bottom-small">
       {{! DEFAULT CRUD CASE }}
       {{#if this.canSubmit}}
-      {{!-- Buttons not needed in readonly detail view --}}
+        {{! Buttons not needed in readonly detail view }}
         {{!-- <AuButton
           @disabled={{if
             (or
@@ -137,7 +137,7 @@
                   </p>
                 </AuContent>
               </AuAlert>
-              {{!-- Buttons not needed in readonly detail view --}}
+              {{! Buttons not needed in readonly detail view }}
               {{!-- <AuButton
                 @disabled={{if
                   (or
@@ -226,7 +226,7 @@
       {{/if}}
     </Group>
 
-    {{!-- these notifications are not needed in the readonly detail view --}}
+    {{! these notifications are not needed in the readonly detail view }}
     {{!-- {{! USER NOTIFICATIONS }}
     <Group>
       <ul class="au-o-grid">

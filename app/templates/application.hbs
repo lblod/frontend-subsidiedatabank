@@ -7,7 +7,7 @@
     @homeRoute="subsidy"
     @appTitle={{this.appTitle}}
   >
-    <li class="au-c-list-horizontal__item">
+    <li class="au-c-list-horizontal__item au-u-hide-on-print">
       <AuLinkExternal
         href="https://abb-vlaanderen.gitbook.io/handleiding-subsidiedatabank/"
         @icon="question-circle"
@@ -16,7 +16,7 @@
         Help
       </AuLinkExternal>
     </li>
-    <li class="au-c-list-horizontal__item">
+    <li class="au-c-list-horizontal__item au-u-hide-on-print">
       {{#if this.session.isAuthenticated}}
         <AuLink @route="auth.logout" @icon="logout">
           Afmelden
@@ -35,7 +35,7 @@
             <AuToolbar @size="medium" @skin="tint" @border="bottom" as |Group|>
               <Group>
                 <ul
-                  class="au-c-list-horizontal au-c-list-horizontal--small hide-on-print"
+                  class="au-c-list-horizontal au-c-list-horizontal--small au-u-hide-on-print"
                 >
                   <li class="au-c-list-horizontal__item">
                     <AuLink @route="subsidy.applications" @icon="arrow-left">

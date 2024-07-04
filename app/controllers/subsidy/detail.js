@@ -1,14 +1,15 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
+import { downloadZip } from 'client-zip';
+import { triggerZipDownload } from 'frontend-subsidiedatabank/utils/download';
+import { tracked } from '@glimmer/tracking';
 
 export default class SubsidyDetailController extends Controller {
   @service router;
-
-  constructor() {
-    super(...arguments);
-    window.addEventListener('beforeprint', this.prepareTextareasForPrinting);
-  }
+  @service() store;
+  @tracked downloadLinks;
+  @tracked stepIsSubmitted;
 
   get reeksHasStartOrEnd() {
     return (
@@ -34,14 +35,28 @@ export default class SubsidyDetailController extends Controller {
   }
 
   @action
-  exportSubsidyAsPDF() {
+  async exportSubsidyAsPDF() {
+    await this.prepareTextareasForPrinting();
+    const previousDocumentTitle = document.title;
+    const filename = `${await this.createFilename()}.pdf`;
+
+    // Update the page title temporarily to the subsidy step, so when the user prints to pdf it will have the subsidy step as filename
+    document.title = filename;
+
+    window.addEventListener(
+      'afterprint',
+      () => {
+        document.title = previousDocumentTitle;
+      },
+      { once: true }
+    );
     window.print();
   }
 
-  prepareTextareasForPrinting() {
+  async prepareTextareasForPrinting() {
     // Remove any previously created print divs
     const existingPrintDivs = document.querySelectorAll(
-      '.textarea, .display-on-print'
+      '.textarea.display-on-print'
     );
     existingPrintDivs.forEach((div) => div.remove());
 
@@ -56,7 +71,6 @@ export default class SubsidyDetailController extends Controller {
       div.style.border = '1px solid #ccc';
       div.style.padding = '5px';
       div.style.minHeight = `${textarea.offsetHeight}px`;
-      div.classList.add('display-on-print');
       div.classList.add('textarea', 'display-on-print');
 
       textarea.classList.add('au-u-hide-on-print');
@@ -64,6 +78,76 @@ export default class SubsidyDetailController extends Controller {
     });
   }
 
+  @action
+  async collectDownloadLinks() {
+    // Get all attachments based on the data-test-file-card-download attribute
+    let elements = document.querySelectorAll(
+      '[data-test-file-card-download=""]'
+    );
+    this.downloadLinks = Array.from(elements).map((link) => ({
+      url: link.href,
+      name: link.getAttribute('download'),
+    }));
+
+    // Run this here to set the stepIsSubmitted to the correct value
+    await this.createFilename();
+  }
+
+  async createFilename() {
+    // Get the subsidy name and selected step name so the zip download can look like '<subsidy name> - <subsidy step name>.zip'
+    const currentStepID = this.router.currentRoute.parent.params.step_id;
+    const currentStep = await this.store.findRecord(
+      'subsidy-application-flow-step',
+      currentStepID,
+      {
+        include: 'subsidy-procedural-step',
+      }
+    );
+
+    // Check if the current step has been submitted
+    const activeSubsidyStep = await this.consumption
+      .activeSubsidyApplicationFlowStep;
+    const activeSubsidyStepOrder = activeSubsidyStep.order;
+    const currentStepOrder = currentStep.order;
+
+    if (
+      activeSubsidyStepOrder === undefined ||
+      activeSubsidyStepOrder > currentStepOrder
+    ) {
+      this.stepIsSubmitted = true;
+    } else {
+      this.stepIsSubmitted = false;
+    }
+
+    const currentProceduralStep = await currentStep.subsidyProceduralStep;
+    const currentProceduralStepName = currentProceduralStep.description;
+    const currentSubsidy = await this.consumption.subsidyMeasureOffer;
+    const currentSubsidyName = currentSubsidy.title;
+
+    const filename = `${currentSubsidyName} - stap ${currentProceduralStepName}`;
+    return filename;
+  }
+
+  @action
+  async downloadBijlagen() {
+    await this.collectDownloadLinks();
+    if (this.downloadLinks.length === 0) return;
+
+    const files = await Promise.all(
+      this.downloadLinks.map(async (link) => {
+        const response = await fetch(link.url);
+        return {
+          name: link.name,
+          input: await response.blob(),
+        };
+      })
+    );
+
+    const filename = `${await this.createFilename()}.zip`;
+
+    const blob = await downloadZip(files).blob();
+    triggerZipDownload(blob, filename);
+  }
   // @task
   // *delete() {
   //   if (!this.canDelete || !this.consumption.isStable) {

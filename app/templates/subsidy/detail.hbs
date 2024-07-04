@@ -36,6 +36,7 @@
         @iconAlignment="left"
         role="menu"
         class="au-u-hide-on-print"
+        {{on "click" this.collectDownloadLinks}}
       >
         <AuButton
           @skin="link"
@@ -47,6 +48,7 @@
         <AuButton
           @skin="link"
           role="menuitem"
+          @disabled={{(lt this.downloadLinks.length 1)}}
           {{on "click" this.downloadBijlagen}}
         >
           Alle bijlagen downloaden in .zip
@@ -94,7 +96,7 @@
   <SidebarContainer>
     <:sidebar>
       <nav>
-        <ul class="au-c-list-navigation subsidySteps">
+        <ul class="au-c-list-navigation subsidy-steps">
           {{#each
             this.consumption.subsidyApplicationFlow.sortedDefinedSteps
             as |step|
@@ -110,6 +112,13 @@
       </nav>
     </:sidebar>
     <:content>
+      <p class="display-on-print au-u-text-center au-u-margin-top">
+        {{#if this.stepIsSubmitted}}
+          Dit formulier is ingediend
+        {{else}}
+          Dit formulier is in concept fase
+        {{/if}}
+      </p>
       {{outlet}}
     </:content>
   </SidebarContainer>

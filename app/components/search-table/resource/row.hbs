@@ -1,18 +1,28 @@
 <td>
   {{!-- FEATURE-FLAG --}}
-  {{#if (and this.features.detailView this.isViewableSubsidy)}}
-    <LinkTo @route="subsidy.detail" @model={{@consumption.id}} class="au-c-link">
-      {{@consumption.subsidyMeasureOffer.title}}
-    </LinkTo>
-  {{else}}
-      {{@consumption.subsidyMeasureOffer.title}}
-  {{/if}}
-
-  {{#if @consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.label }}
-    <AuHelpText @skin="secondary" class="au-u-margin-top-none">
-      {{@consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.label}}
-    </AuHelpText>
-  {{/if}}
+  <div>
+    {{#if (and this.features.detailView this.isViewableSubsidy)}}
+      <LinkTo @route="subsidy.detail" @model={{@consumption.id}} class="au-c-link">
+        {{@consumption.subsidyMeasureOffer.title}}
+      </LinkTo>
+    {{else}}
+        {{@consumption.subsidyMeasureOffer.title}}
+    {{/if}}
+  </div>
+  <div class="au-u-flex--inline">
+    {{#if @consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.label }}
+      <AuHelpText @skin="secondary" class="au-u-margin-top-none">
+        {{@consumption.subsidyApplicationFlow.subsidyMeasureOfferSeries.label}}
+      </AuHelpText>
+    {{/if}}
+    {{#let (this.projectName @consumption) as |projectName|}}
+      {{#if projectName}}
+        <AuHelpText @skin="secondary" class="au-u-margin-top-none">
+          &nbsp; | {{projectName}}
+        </AuHelpText>
+      {{/if}}
+    {{/let}}
+  </div>
 </td>
 <td>
   {{! template-lint-disable no-array-prototype-extensions }}

@@ -22,4 +22,10 @@ export default class RowComponent extends Component {
     const currentSubsidy = this.args.consumption.subsidyMeasureOffer.get('id');
     return allowedSubsidies.has(currentSubsidy);
   }
+
+  projectName = (consumption) => {
+    return consumption.hasMany('subsidyApplicationForms').value()?.at(0)
+      ?.projectName;
+  };
+
 }

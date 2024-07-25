@@ -8,6 +8,9 @@ module.exports = function (defaults) {
       dutchDatePickerLocalization: true,
       disableWormholeElement: true,
     },
+    'ember-test-selectors': {
+      strip: false,
+    },
     'ember-simple-auth': {
       useSessionSetupMethod: true,
     },

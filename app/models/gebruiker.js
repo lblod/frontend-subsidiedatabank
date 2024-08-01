@@ -6,10 +6,15 @@ export default class Gebruiker extends Model {
   @attr achternaam;
 
   @hasMany('account', { async: true, inverse: null }) account;
-  @hasMany('bestuurseenheid', { async: true, inverse: null }) bestuurseenheden;
+  @hasMany('organization', {
+    async: false,
+    inverse: null,
+    polymorphic: true,
+  })
+  organizations;
 
   get group() {
-    return this.hasMany('bestuurseenheden').value()[0];
+    return this.organizations.at(0);
   }
 
   get fullName() {

@@ -56,7 +56,7 @@ export default class SubsidyApplicationForm extends Model {
   })
   sources;
 
-  @hasMany('bestuurseenheid', {
+  @hasMany('organization', {
     async: true,
     inverse: null,
   })

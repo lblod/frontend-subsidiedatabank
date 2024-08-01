@@ -6,7 +6,7 @@ export default class Bestuursorgaan extends Model {
   @attr('date') bindingStart;
   @attr('date') bindingEinde;
 
-  @belongsTo('bestuurseenheid', { async: true, inverse: null }) bestuurseenheid;
+  @belongsTo('organization', { async: true, inverse: null }) organization;
   @belongsTo('bestuursorgaan-classificatie-code', {
     async: true,
     inverse: null,

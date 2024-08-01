@@ -4,7 +4,7 @@ export default class ParticipationModel extends Model {
   @attr description;
   @attr role;
 
-  @belongsTo('bestuurseenheid') participatingBestuurseenheid;
+  @belongsTo('organization') participatingOrganization;
 }
 
 export const ROLES = {

@@ -43,7 +43,7 @@ export default class SubsidyApplicationsRoute extends Route {
       'subsidy-application-forms',
       'subsidy-application-flow.subsidy-measure-offer-series.period',
       'active-subsidy-application-flow-step.subsidy-procedural-step.period',
-      'participations.participating-bestuurseenheid.classificatie',
+      'participations.participating-organization.classificatie',
       'last-modifier',
     ].join(',');
 
@@ -54,12 +54,12 @@ export default class SubsidyApplicationsRoute extends Route {
       query['filter[subsidy-measure-offer][:uri:]'] = params.subsidieType;
 
     if (params.bestuurseenheden)
-      query['filter[participations][participating-bestuurseenheid][:uri:]'] =
+      query['filter[participations][participating-organization][:uri:]'] =
         params.bestuurseenheden;
 
     if (params.bestuursType)
       query[
-        'filter[participations][participating-bestuurseenheid][classificatie][:uri:]'
+        'filter[participations][participating-organization][classificatie][:uri:]'
       ] = params.bestuursType;
 
     if (params.aanvraagDatum) query['filter[modified]'] = params.aanvraagDatum;

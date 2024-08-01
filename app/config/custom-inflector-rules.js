@@ -83,6 +83,7 @@ inflector.irregular('application-form-entry', 'application-form-entries');
 
 // New subsidy flow
 inflector.irregular('participation', 'participations');
+inflector.irregular('organization', 'organizations');
 inflector.irregular('period-of-time', 'periods-of-time');
 inflector.irregular(
   'subsidy-measure-consumption',

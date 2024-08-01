@@ -56,6 +56,7 @@ export default class SubsidyMeasureConsumptionModel extends Model {
   @hasMany('participation', {
     async: true,
     inverse: null,
+    polymorphic: true,
   })
   participations;
 

@@ -40,7 +40,7 @@ export default class SubsidyDetailRoute extends Route {
           'subsidy-application-forms',
           'subsidy-application-flow.defined-steps.subsidy-procedural-step',
           'subsidy-application-flow.subsidy-measure-offer-series.period',
-          'participations.participating-bestuurseenheid',
+          'participations.participating-organization',
           'last-modifier',
         ].join(','),
       }
@@ -49,7 +49,7 @@ export default class SubsidyDetailRoute extends Route {
     return {
       consumption,
       organization:
-        consumption.participations.firstObject.participatingBestuurseenheid,
+        consumption.participations.firstObject.participatingOrganization,
     };
   }
 

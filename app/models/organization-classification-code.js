@@ -1,7 +1,7 @@
 import Model, { attr } from '@ember-data/model';
 
-export default class BestuursorgaanClassificatieCode extends Model {
-  @attr uri;
+export default class OrganizationClassificationCodeModel extends Model {
   @attr label;
   @attr scopeNote;
+  @attr uri;
 }

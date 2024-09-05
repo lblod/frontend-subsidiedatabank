@@ -6,6 +6,7 @@ const allowedSubsidies = new Set([
   '70cc4947-33a3-4d26-82e0-2e1eacd2fea2', // Fietssubsidie
   'be6311ab-3a16-478c-9cc1-a233439c44b5', // Oekraine Nooddorpen
   'b03215cf-2206-493c-b534-0546a2479eef', // Oekraine Opknapwerken slaapplekken
+  '0b5cae58-97fb-4982-9fb7-4cf660f003df'  // Uitrol Lokaal E-Inclusiebeleid
 ]);
 
 export default class RowComponent extends Component {

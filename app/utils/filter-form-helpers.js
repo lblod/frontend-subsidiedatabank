@@ -91,7 +91,7 @@ export async function removeSourceData(url) {
 export function getQueryParams(options) {
   return {
     subsidieType: options,
-    bestuurseenheden: options,
+    organizations: options,
     bestuursType: options,
     subsidieStatus: options,
     aanvraagDatum: options,

@@ -15,6 +15,7 @@ Router.map(function () {
       this.route('step', { path: '/steps/:step_id' }, function () {
         this.route('new');
         this.route('detail', { path: '/forms/:form_id' });
+        this.route('skipped');
       });
     });
   });

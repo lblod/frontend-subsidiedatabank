@@ -105,6 +105,7 @@
               <Subsidies::ApplicationFlowStepLink
                 @currentStep={{step}}
                 @activeStep={{this.consumption.activeSubsidyApplicationFlowStep}}
+                @consumption={{this.consumption}}
               />
             </li>
           {{/each}}
@@ -112,13 +113,6 @@
       </nav>
     </:sidebar>
     <:content>
-      <p class="display-on-print au-u-text-center au-u-margin-top">
-        {{#if this.stepIsSubmitted}}
-          Dit formulier is ingediend
-        {{else}}
-          Dit formulier is in concept fase
-        {{/if}}
-      </p>
       {{outlet}}
     </:content>
   </SidebarContainer>

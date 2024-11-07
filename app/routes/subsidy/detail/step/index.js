@@ -30,9 +30,9 @@ export default class SubsidyDetailStepIndexRoute extends Route {
         form.id
       );
     } else {
-      // TODO: creating a new form here..
+      // Form not found => step was skipped in subsidiepunt
       return this.router.replaceWith(
-        'subsidy.detail.step.new',
+        'subsidy.detail.step.skipped',
         consumption.id,
         step.id
       );

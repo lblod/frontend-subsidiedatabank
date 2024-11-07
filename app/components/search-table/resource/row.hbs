@@ -17,6 +17,7 @@
     {{/if}}
     {{#let (this.projectName @consumption) as |projectName|}}
       {{#if projectName}}
+        {{!-- template-lint-disable no-whitespace-for-layout --}}
         <AuHelpText @skin="secondary" class="au-u-margin-top-none">
           &nbsp; | {{projectName}}
         </AuHelpText>

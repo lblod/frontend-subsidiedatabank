@@ -1,324 +1,141 @@
 <div id="subsidyParent" class="au-c-body-container au-c-body-container--scroll">
   {{!-- Form hasn't been created and can't be found --}}
   {{#if @model.formNotFound}}
-    <div class="au-o-box au-o-box--small">
-      <div class="au-c-alert au-c-alert--warning">
-        <div class="au-c-alert__content">
-          <p>Deze stap werd overgeslagen waardoor het formulier niet gevonden kan worden.</p>
-        </div>
-      </div>
-    </div>
+  <div class="au-o-box au-u-max-width-medium">
+    <AuAlert @title="Deze stap is overgeslagen." @skin="info" @icon="redo" @closable={{false}}>
+      <p> Deze stap is niet ingediend, en dus ook niet verwerkt.</p>
+    </AuAlert>
+  </div>
   {{else}}
-    <p class="display-on-print au-u-text-center au-u-margin-top">
-      {{#if this.submitted}}
-      Dit formulier is ingediend
-      {{else}}
-      Dit formulier is in concept fase
-      {{/if}}
-    </p>
-
-    {{!-- Form can be found but has been skipped --}}
-    {{#if (and this.isPreviousStep (not this.submitted)) }}
-      <div class="au-o-box au-o-box--small">
-        <div class="au-c-alert au-c-alert--warning">
-          <div class="au-c-alert__content">
-            <p>Deze stap werd overgeslagen en is niet ingediend.</p>
-          </div>
-        </div>
-      </div>
+  <p class="display-on-print au-u-text-center au-u-margin-top">
+    {{#if this.submitted}}
+    Dit formulier is ingediend
+    {{else}}
+    Dit formulier is in concept fase
     {{/if}}
-    <div class="au-o-box">
-      <RdfForm
-        @groupClass="au-o-grid__item"
-        @form={{this.form}}
-        {{! Show is used to switch between 'edit' and 'show' state, setting this to true makes the forms readonly }}
-        @show={{true}}
-        @graphs={{this.graphs}}
-        @sourceNode={{this.sourceNode}}
-        @formStore={{this.formStore}}
-        @forceShowErrors={{this.forceShowErrors}}
-        @useNewListingLayout={{true}}
-        @level={{2}}
-        class="au-u-max-width-medium"
-      />
-    </div>
-    <AuToolbar class="invisible-on-print" @size="large" as |Group|>
-      {{#if (and this.forceShowErrors (not this.isValidForm))}}
-        <Group class="au-c-toolbar__group--row">
-          <AuAlert
-            @icon="alert-triangle"
-            @title="Kan dossier niet versturen"
-            @skin="error"
-            @size="small"
-            @closable="true"
-            class="au-u-margin-bottom-none"
-          >
-            <p>Kan formulier niet versturen door ontbrekende of foutief ingevulde
-              velden.</p>
-          </AuAlert>
-        </Group>
-      {{/if}}
-      {{#if this.error}}
-        <Group class="au-c-toolbar__group--row">
-          <AuAlert
-            @icon="alert-triangle"
-            @title="Oeps! Dit is een beetje gênant ..."
-            @skin="error"
-            @size="small"
-            @closable="true"
-            class="au-u-margin-bottom-none"
-          >
-            <p>Het lijkt er op dat er iets onverwacht is fout gelopen bij het
-              {{this.error.action}}
-              van het formulier.</p>
-          </AuAlert>
-        </Group>
-      {{/if}}
-      <Group class="au-u-margin-top-small au-u-margin-bottom-small">
-        {{! DEFAULT CRUD CASE }}
-        {{#if this.canSubmit}}
-          {{! Buttons not needed in readonly detail view }}
-          {{!-- <AuButton
-            @disabled={{if
-              (or
-                this.saveConcept.isRunning
-                this.submit.isRunning
-                this.delete.isRunning
-              )
-              "true"
-            }}
-            @loading={{if this.submit.isRunning "true"}}
-            {{on "click" (perform this.submit)}}
-          >Verstuur naar de Vlaamse overheid
-          </AuButton>
-          <AuButton
-            @disabled={{if
-              (or
-                this.saveConcept.isRunning
-                this.submit.isRunning
-                this.delete.isRunning
-              )
-              "true"
-            }}
-            @loading={{if this.saveConcept.isRunning "true"}}
-            @skin={{"secondary"}}
-            {{on "click" (perform this.saveConcept)}}
-          >
-            Bewaar als concept
-          </AuButton> --}}
-        {{else}}
-          {{! SENDING NOT POSSIBLE }}
-          {{#if this.submitted}}
-            <div>
-              <AuAlert
-                @icon="info-circle"
-                @title="De subsidiestap werd verstuurd."
-                @skin="success"
-                @size="small"
-              >
-                <p>We nemen contact op met de opgegeven contactpersoon over het
-                  verdere verloop.
-                  <AuLinkExternal
-                    href="https://www.vlaanderen.be/lokaal-bestuur/loket-voor-lokale-besturen/subsidiebeheer"
-                  >Vind hier meer informatie over de inhoud en het verloop van de
-                    subsidies</AuLinkExternal>.
-                </p>
-                <p>Indien u een fout heeft ontdekt, of een vraag heeft, neem
-                  contact op met
-                  <a
-                    href="mailto:LoketLokaalBestuur@vlaanderen.be"
-                    class="au-c-link"
-                  >LoketLokaalBestuur@vlaanderen.be</a>.
-                </p>
-              </AuAlert>
-            </div>
-          {{else}}
-            {{#if this.submittablePeriodNeedsToStart}}
-              <div>
-                <AuAlert
-                  class="au-u-margin-bottom-small"
-                  @icon="info-circle"
-                  @skin="info"
-                  @size="small"
-                  @title="Deze stap kan u nog niet indienen."
-                >
-                  <AuContent>
-                    <p>U kan pas vanaf een later moment indienen.</p>
+  </p>
 
-                    <p>
-                      Meer informatie over de subsidieaanvragen vindt u
-                      <AuLinkExternal
-                        href="https://www.vlaanderen.be/lokaal-bestuur/loket-voor-lokale-besturen/subsidiebeheer"
-                      >
-                        hier
-                      </AuLinkExternal>.<br />
-                      Indien u een fout heeft ontdekt, of een vraag heeft, neem
-                      contact op met
-                      <a
-                        class="au-c-link"
-                        href="mailto:LoketLokaalBestuur@vlaanderen.be"
-                      >
-                        LoketLokaalBestuur@vlaanderen.be
-                      </a>.
-                    </p>
-                  </AuContent>
-                </AuAlert>
-                {{! Buttons not needed in readonly detail view }}
-                {{!-- <AuButton
-                  @disabled={{if
-                    (or
-                      this.saveConcept.isRunning
-                      this.submit.isRunning
-                      this.delete.isRunning
-                    )
-                    "true"
-                  }}
-                  @loading={{if this.saveConcept.isRunning "true"}}
-                  @skin={{"secondary"}}
-                  {{on "click" (perform this.saveConcept)}}
-                >
-                  Bewaar als concept
-                </AuButton> --}}
-              </div>
-            {{else if this.submittablePeriodExpired}}
-              <div>
-                <AuAlert
-                  @icon="info-circle"
-                  @title="De deadline voor deze stap is verstreken."
-                  @skin="warning"
-                  @size="small"
-                  class="au-u-margin-bottom-small"
-                >
-                  <p>
-                    Deze stap was beschikbaar tot en met
-                    {{moment-format
-                      this.step.subsidyProceduralStep.period.end
-                      "DD-MM-YYYY"
-                    }}.
-                  </p>
-                  <p>Indien u een fout heeft ontdekt, of een vraag heeft, neem
-                    contact op met
-                    <a
-                      href="mailto:LoketLokaalBestuur@vlaanderen.be"
-                      class="au-c-link"
-                    >LoketLokaalBestuur@vlaanderen.be</a>.
-                  </p>
-                </AuAlert>
-              </div>
-            {{else}}
-              {{! GENERAL ISSUES (data is broken) }}
-              {{#if this.isActiveStep}}
-                <div>
-                  <AuAlert
-                    @icon="info-circle"
-                    @title="Algemene fout"
-                    @skin="error"
-                    @size="small"
-                    class="au-u-margin-bottom-small"
-                  >
-                    <p>Indien dit blijft gebeuren, neem contact op met
-                      <a
-                        href="mailto:LoketLokaalBestuur@vlaanderen.be"
-                        class="au-c-link"
-                      >
-                        LoketLokaalBestuur@vlaanderen.be
-                      </a>.
-                    </p>
-                  </AuAlert>
-                </div>
-              {{else}}
-                {{! PREVIOUS STEP NEEDS TO BE COMPLETED FIRST }}
-                <div>
-                  <AuAlert
-                    @icon="info-circle"
-                    @title="Deze subsidieaanvraag stap is nog niet beschikbaar."
-                    @skin="info"
-                    @size="small"
-                    class="au-u-margin-bottom-small"
-                  >
-                    <p>Gelieve eerst de nog in te dienen stappen aan te vullen.</p>
-                    <p>Indien u een fout heeft ontdekt, of een vraag heeft, neem
-                      contact op met
-                      <a
-                        href="mailto:LoketLokaalBestuur@vlaanderen.be"
-                        class="au-c-link"
-                      >LoketLokaalBestuur@vlaanderen.be</a>.
-                    </p>
-                  </AuAlert>
-                </div>
-              {{/if}}
-            {{/if}}
-          {{/if}}
-        {{/if}}
-      </Group>
+  {{!-- Form can be found but has been skipped --}}
+  {{#if (and this.isPreviousStep (not this.submitted)) }}
+  <div class="au-o-box au-u-max-width-medium">
+    <AuAlert @title="Deze stap is overgeslagen." @skin="info" @icon="redo" @closable={{false}}>
+      <p> Deze stap is niet ingediend, en dus ook niet verwerkt.</p>
+    </AuAlert>
+  </div>
+  {{/if}}
+  <div class="au-o-box">
+    <RdfForm @groupClass="au-o-grid__item" @form={{this.form}} {{! Show is used to switch between 'edit' and 'show'
+      state, setting this to true makes the forms readonly }} @show={{true}} @graphs={{this.graphs}}
+      @sourceNode={{this.sourceNode}} @formStore={{this.formStore}} @forceShowErrors={{this.forceShowErrors}}
+      @useNewListingLayout={{true}} @level={{2}} class="au-u-max-width-medium" />
+  </div>
+  <AuToolbar class="invisible-on-print" @size="large" as |Group|>
+    {{#if (and this.forceShowErrors (not this.isValidForm))}}
+    <Group class="au-c-toolbar__group--row">
+      <AuAlert @icon="alert-triangle" @title="Kan dossier niet versturen" @skin="error" @size="small" @closable="true"
+        class="au-u-margin-bottom-none">
+        <p>Kan formulier niet versturen door ontbrekende of foutief ingevulde
+          velden.</p>
+      </AuAlert>
+    </Group>
+    {{/if}}
+    {{#if this.error}}
+    <Group class="au-c-toolbar__group--row">
+      <AuAlert @icon="alert-triangle" @title="Oeps! Dit is een beetje gênant ..." @skin="error" @size="small"
+        @closable="true" class="au-u-margin-bottom-none">
+        <p>Het lijkt er op dat er iets onverwacht is fout gelopen bij het
+          {{this.error.action}}
+          van het formulier.</p>
+      </AuAlert>
+    </Group>
+    {{/if}}
+    <Group class="au-u-margin-top-small au-u-margin-bottom-small">
+      {{! SENDING NOT POSSIBLE }}
+      {{#unless this.canSubmit}}
+      {{#if this.submitted}}
+      <div>
+        <AuAlert @icon="info-circle" @title="De subsidiestap werd verstuurd." @skin="success" @size="small">
+          <p>We nemen contact op met de opgegeven contactpersoon over het
+            verdere verloop.
+            <AuLinkExternal href="https://www.vlaanderen.be/lokaal-bestuur/loket-voor-lokale-besturen/subsidiebeheer">
+              Vind hier meer informatie over de inhoud en het verloop van de
+              subsidies</AuLinkExternal>.
+          </p>
+          <p>Indien u een fout heeft ontdekt, of een vraag heeft, neem
+            contact op met
+            <a href="mailto:LoketLokaalBestuur@vlaanderen.be" class="au-c-link">LoketLokaalBestuur@vlaanderen.be</a>.
+          </p>
+        </AuAlert>
+      </div>
+      {{else}}
+      {{#if this.submittablePeriodNeedsToStart}}
+      <div>
+        <AuAlert class="au-u-margin-bottom-small" @icon="info-circle" @skin="info" @size="small"
+          @title="Deze stap kan u nog niet indienen.">
+          <AuContent>
+            <p>U kan pas vanaf een later moment indienen.</p>
 
-      {{! these notifications are not needed in the readonly detail view }}
-      {{!-- {{! USER NOTIFICATIONS }}
-      <Group>
-        <ul class="au-o-grid">
-          {{! SAVING }}
-          {{#if this.saveConcept.isRunning}}
-            <li class="au-o-grid__item">
-              <AuAlert
-                class="au-u-margin-none"
-                @icon="info-circle"
-                @title="Aan het opslaan..."
-                @skin="info"
-                @size="small"
-              />
-            </li>
-          {{/if}}
-          {{! MOVING }}
-          {{#if this.next.isRunning}}
-            <li class="au-o-grid__item">
-              <AuAlert
-                class="au-u-margin-none"
-                @icon="info-circle"
-                @title="Volgende stap voorbereiden..."
-                @skin="info"
-                @size="small"
-              />
-            </li>
-          {{/if}}
-          {{! SENDING }}
-          {{#if
-            (and
-              this.submit.isRunning
-              (not this.saveConcept.isRunning)
-              (not this.next.isRunning)
-            )
-          }}
-            <li class="au-o-grid__item">
-              <AuAlert
-                class="au-u-margin-none"
-                @icon="info-circle"
-                @title="Aan het versturen..."
-                @skin="info"
-                @size="small"
-              />
-            </li>
-          {{/if}}
-          {{! RECENTLY SAVED }}
-          {{#if
-            (and
-              this.recentlySaved
-              (not this.saveConcept.isRunning)
-              (not this.submit.isRunning)
-              (not this.next.isRunning)
-            )
-          }}
-            <li class="au-o-grid__item">
-              <AuAlert
-                class="au-u-margin-none"
-                @icon="info-circle"
-                @title="Opgeslagen."
-                @skin="success"
-                @size="small"
-              />
-            </li>
-          {{/if}}
-        </ul>
-      </Group> --}}
-    </AuToolbar>
+            <p>
+              Meer informatie over de subsidieaanvragen vindt u
+              <AuLinkExternal href="https://www.vlaanderen.be/lokaal-bestuur/loket-voor-lokale-besturen/subsidiebeheer">
+                hier
+              </AuLinkExternal>.<br />
+              Indien u een fout heeft ontdekt, of een vraag heeft, neem
+              contact op met
+              <a class="au-c-link" href="mailto:LoketLokaalBestuur@vlaanderen.be">
+                LoketLokaalBestuur@vlaanderen.be
+              </a>.
+            </p>
+          </AuContent>
+        </AuAlert>
+      </div>
+      {{else if this.submittablePeriodExpired}}
+      <div>
+        <AuAlert @icon="info-circle" @title="De deadline voor deze stap is verstreken." @skin="warning" @size="small"
+          class="au-u-margin-bottom-small">
+          <p>
+            Deze stap was beschikbaar tot en met
+            {{moment-format
+            this.step.subsidyProceduralStep.period.end
+            "DD-MM-YYYY"
+            }}.
+          </p>
+          <p>Indien u een fout heeft ontdekt, of een vraag heeft, neem
+            contact op met
+            <a href="mailto:LoketLokaalBestuur@vlaanderen.be" class="au-c-link">LoketLokaalBestuur@vlaanderen.be</a>.
+          </p>
+        </AuAlert>
+      </div>
+      {{else}}
+      {{! GENERAL ISSUES (data is broken) }}
+      {{#if this.isActiveStep}}
+      <div>
+        <AuAlert @icon="info-circle" @title="Algemene fout" @skin="error" @size="small"
+          class="au-u-margin-bottom-small">
+          <p>Indien dit blijft gebeuren, neem contact op met
+            <a href="mailto:LoketLokaalBestuur@vlaanderen.be" class="au-c-link">
+              LoketLokaalBestuur@vlaanderen.be
+            </a>.
+          </p>
+        </AuAlert>
+      </div>
+      {{else}}
+      {{! PREVIOUS STEP NEEDS TO BE COMPLETED FIRST }}
+      <div>
+        <AuAlert @icon="info-circle" @title="Deze subsidieaanvraag stap is nog niet beschikbaar." @skin="info"
+          @size="small" class="au-u-margin-bottom-small">
+          <p>Gelieve eerst de nog in te dienen stappen aan te vullen.</p>
+          <p>Indien u een fout heeft ontdekt, of een vraag heeft, neem
+            contact op met
+            <a href="mailto:LoketLokaalBestuur@vlaanderen.be" class="au-c-link">LoketLokaalBestuur@vlaanderen.be</a>.
+          </p>
+        </AuAlert>
+      </div>
+      {{/if}}
+      {{/if}}
+      {{/if}}
+      {{/unless}}
+    </Group>
+  </AuToolbar>
   {{/if}}
 </div>

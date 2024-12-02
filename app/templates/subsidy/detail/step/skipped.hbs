@@ -1,9 +1,7 @@
 <div id="subsidyParent" class="au-c-body-container au-c-body-container--scroll">
-  <div class="au-o-box au-o-box--small">
-    <div class="au-c-alert au-c-alert--warning">
-      <div class="au-c-alert__content">
-        <p>Deze stap werd overgeslagen waardoor het formulier niet gevonden kan worden.</p>
-      </div>
-    </div>
+  <div class="au-o-box au-u-max-width-medium">
+    <AuAlert @title="Deze stap is overgeslagen." @skin="info" @icon="redo" @closable={{false}}>
+      <p> Deze stap is niet ingediend, en dus ook niet verwerkt.</p>
+    </AuAlert>
   </div>
 </div>

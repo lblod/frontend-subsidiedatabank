@@ -4,6 +4,7 @@ import fetch from 'fetch';
 import { ForkingStore } from '@lblod/ember-submission-form-fields';
 import { FORM, RDF } from 'frontend-subsidiedatabank/rdf/namespaces';
 import { NamedNode } from 'rdflib';
+import { tracked } from '@glimmer/tracking';
 
 const FORM_GRAPH = new NamedNode('http://data.lblod.info/form');
 const META_GRAPH = new NamedNode('http://data.lblod.info/metagraph');
@@ -11,6 +12,7 @@ const SOURCE_GRAPH = new NamedNode(`http://data.lblod.info/sourcegraph`);
 
 export default class SubsidyDetailStepDetailRoute extends Route {
   @service store;
+  @tracked formNotFound = false;
 
   async model({ form_id: semanticFormID }) {
     let { consumption } = this.modelFor('subsidy.detail');
@@ -55,6 +57,7 @@ export default class SubsidyDetailStepDetailRoute extends Route {
       formStore,
       graphs,
       sourceNode,
+      formNotFound: this.formNotFound,
     };
   }
 
@@ -75,19 +78,14 @@ export default class SubsidyDetailStepDetailRoute extends Route {
       method: 'GET',
       headers: { Accept: 'application/vnd.api+json' },
     });
-    // TODO: maybe remove once figured out why some forms can't get retrieved?
     if (response.status != 200) {
-      console.log(
-        'error while retrieving the form at ',
-        url,
-        ' status code:',
-        response.status
-      );
+      this.formNotFound = true;
       return;
     }
     const content = await response.json();
     store.parse(content.form, graphs.formGraph, 'text/turtle');
     store.parse(content.meta, graphs.metaGraph, 'text/turtle');
     store.parse(content.source, graphs.sourceGraph, 'text/turtle');
+    this.formNotFound = false;
   }
 }

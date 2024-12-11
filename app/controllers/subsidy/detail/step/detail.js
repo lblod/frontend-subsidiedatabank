@@ -69,6 +69,21 @@ export default class SubsidyDetailStepDetailController extends Controller {
     );
   }
 
+  get isSubmitted() {
+    return (
+      this.consumption.activeSubsidyApplicationFlowStep.get('id') == undefined
+    );
+  }
+
+  get isPreviousStep() {
+    // If subsidy is submitted, all the steps are previous
+    if (this.isSubmitted) return true;
+    return (
+      this.step.order <
+      this.consumption.activeSubsidyApplicationFlowStep.get('order')
+    );
+  }
+
   get canSubmit() {
     return (
       (!this.submitted && this.isActiveStep && this.isInSubmittablePeriod) ||

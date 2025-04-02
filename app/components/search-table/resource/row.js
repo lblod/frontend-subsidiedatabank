@@ -7,6 +7,8 @@ const allowedSubsidies = new Set([
   'be6311ab-3a16-478c-9cc1-a233439c44b5', // Oekraine Nooddorpen
   'b03215cf-2206-493c-b534-0546a2479eef', // Oekraine Opknapwerken slaapplekken
   '0b5cae58-97fb-4982-9fb7-4cf660f003df', // Uitrol Lokaal E-Inclusiebeleid
+  '9d36ad03-32c6-424e-a937-4a34cc32198c', // Safer spaces
+  'e27d78e5-406b-412f-80a3-df4b6b73c496', // Gendergerelateerd geweld
 ]);
 
 export default class RowComponent extends Component {

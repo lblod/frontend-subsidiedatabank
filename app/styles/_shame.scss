@@ -26,6 +26,10 @@
   color: $au-gray-800;
 }
 
+.au-c-input {
+  min-width: 40%;
+}
+
 // Info text
 .au-c-info-text {
   @include au-font-size($au-base);

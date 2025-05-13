@@ -15,6 +15,17 @@
     {{/if}}
   </p>
 
+  {{#if this.isConsumptionFromToday}}
+  <div class="au-o-box au-u-max-width-medium">
+    <AuAlert @icon="info-circle" @title="De subsidiestap is vandaag ingediend" @skin="info" @size="small">
+      <p>Subsidies worden dagelijks gesynchroniseerd met de subsidiedatabank. Als er op dezelfde dag nog wijzigingen
+        zijn gebeurd, kan de informatie tijdelijk onvolledig of verouderd zijn.
+      </p>
+    </AuAlert>
+  </div>
+  {{/if}}
+
+
   {{!-- Form can be found but has been skipped --}}
   {{#if (and this.isPreviousStep (not this.submitted)) }}
   <div class="au-o-box au-u-max-width-medium">

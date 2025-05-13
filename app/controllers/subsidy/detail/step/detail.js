@@ -121,6 +121,15 @@ export default class SubsidyDetailStepDetailController extends Controller {
     return this.model.step.get('deadline').content;
   }
 
+  get isConsumptionFromToday() {
+    const today = new Date();
+    return (
+      this.consumption.created.getFullYear() === today.getFullYear() &&
+      this.consumption.created.getMonth() === today.getMonth() &&
+      this.consumption.created.getDate() === today.getDate()
+    );
+  }
+
   // TODO what is this?
   @action
   registerObserver() {

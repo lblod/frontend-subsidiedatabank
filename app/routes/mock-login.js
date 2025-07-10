@@ -16,9 +16,14 @@ export default class MockLoginRoute extends Route {
   }
 
   model(params) {
-    const filter = { provider: 'https://github.com/lblod/mock-login-service' };
-    if (params.organisatie)
-      filter.organisatie = { organizations: params.organisatie };
+    const filter = { 
+      provider: 'https://github.com/lblod/mock-login-service' ,
+      gebruiker: {
+        account: { 
+          id:'3a91ff60-07c1-4136-ac5e-55cf401e0956'  
+        }
+      }
+    };
     return this.store.query('account', {
       include: 'gebruiker.organizations',
       filter: filter,

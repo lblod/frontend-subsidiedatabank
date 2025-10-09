@@ -19,9 +19,6 @@ module.exports = function (environment) {
     },
 
     // Feature flags for the application to enable/disable certain features
-    featureFlags: {
-      detailView: false,
-    },
     // Analytics
     'ember-plausible': {
       domain: '{{PLAUSIBLE_APP_DOMAIN}}',
@@ -37,14 +34,6 @@ module.exports = function (environment) {
       switchRedirectUrl: '{{ACMIDM_SWITCH_REDIRECT_URL}}',
     },
   };
-
-  if (environment === 'development') {
-    ENV.featureFlags['detailView'] = true;
-  }
-
-  if (environment === 'production') {
-    ENV.featureFlags['detailView'] = true;
-  }
 
   if (environment === 'test') {
     // Testem prefers this...

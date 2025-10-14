@@ -6,7 +6,7 @@ import { A } from '@ember/array';
 import { action } from '@ember/object';
 /* eslint-disable ember/no-runloop */
 import { scheduleOnce } from '@ember/runloop';
-import { MU, RDF, XSD } from 'frontend-subsidiepunt/rdf/namespaces';
+import { MU, RDF, XSD } from 'frontend-subsidiedatabank/rdf/namespaces';
 
 const climateBaseUri = 'http://data.lblod.info/vocabularies/subsidie/climate/';
 const climateTableBaseUri = 'http://data.lblod.info/climate-tables';

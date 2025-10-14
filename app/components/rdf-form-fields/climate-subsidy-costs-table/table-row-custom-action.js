@@ -7,7 +7,7 @@ import { guidFor } from '@ember/object/internals';
 /* eslint-disable ember/no-runloop */
 import { scheduleOnce } from '@ember/runloop';
 import { removeSimpleFormValue } from '@lblod/submission-form-helpers';
-import { MU, QB, RDF, XSD } from 'frontend-subsidiepunt/rdf/namespaces';
+import { MU, QB, RDF, XSD } from 'frontend-subsidiedatabank/rdf/namespaces';
 
 const climateBaseUri = 'http://data.lblod.info/vocabularies/subsidie/climate/';
 const climateTableBaseUri = 'http://data.lblod.info/climate-tables';

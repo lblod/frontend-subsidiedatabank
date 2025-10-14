@@ -26,8 +26,12 @@ export default class SubsidyDetailController extends Controller {
     return this.model.consumption;
   }
 
+  get participations() {
+    return this.model.consumption.participations;
+  }
+
   get organization() {
-    return this.model.organization;
+    return this.participations?.firstObject?.participatingOrganization;
   }
 
   get canDelete() {

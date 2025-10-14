@@ -51,7 +51,7 @@ export default class SubsidyApplicationForm extends Model {
   status;
 
   @hasMany('file', {
-    async: false,
+    async: true,
     inverse: null,
   })
   sources;

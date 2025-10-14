@@ -6,10 +6,10 @@ export default class GebruikerModel extends Model {
   @attr achternaam;
   @attr rijksregisterNummer;
 
-  @hasMany('account', { async: false, inverse: 'gebruiker' }) account;
+  @hasMany('account', { async: true, inverse: 'gebruiker' }) account;
 
   @hasMany('organization', {
-    async: false,
+    async: true,
     inverse: null,
     polymorphic: true,
   })

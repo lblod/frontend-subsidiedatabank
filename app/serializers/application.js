@@ -1,9 +1,9 @@
 /* eslint-disable ember/no-mixins */
-import JSONAPISerializer from '@ember-data/serializer/json-api';
 import DataTableSerializerMixin from 'ember-data-table/mixins/serializer';
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
 export default class ApplicationSerializer extends JSONAPISerializer.extend(
-  DataTableSerializerMixin
+  DataTableSerializerMixin,
 ) {
   serializeAttribute(snapshot, json, key, attributes) {
     if (key !== 'uri')

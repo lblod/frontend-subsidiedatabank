@@ -8,7 +8,6 @@ export default class ParticipationModel extends Model {
     async: true,
     polymorphic: true,
     inverse: 'participations',
-    as: 'organization',
   })
   participatingOrganization;
 }

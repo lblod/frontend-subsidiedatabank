@@ -1,4 +1,3 @@
-/* eslint-disable ember/no-get, ember/classic-decorator-no-classic-methods */
 import Model, { attr, hasMany } from '@ember-data/model';
 
 export default class GebruikerModel extends Model {
@@ -6,10 +5,10 @@ export default class GebruikerModel extends Model {
   @attr achternaam;
   @attr rijksregisterNummer;
 
-  @hasMany('account', { async: true, inverse: 'gebruiker' }) account;
+  @hasMany('account', { async: false, inverse: 'gebruiker' }) account;
 
   @hasMany('organization', {
-    async: true,
+    async: false,
     inverse: null,
     polymorphic: true,
   })

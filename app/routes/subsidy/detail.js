@@ -48,8 +48,6 @@ export default class SubsidyDetailRoute extends Route {
 
     return {
       consumption,
-      organization:
-        consumption.participations.firstObject.participatingOrganization,
     };
   }
 

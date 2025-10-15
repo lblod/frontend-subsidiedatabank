@@ -284,7 +284,7 @@ export default class SubsidyDetailStepDetailController extends Controller {
       'filter[:uri:]': statusUri,
     });
 
-    if (statuses.length) model.status = statuses.firstObject;
+    if (statuses.length) model.status = statuses[0];
     await model.save();
   }
 

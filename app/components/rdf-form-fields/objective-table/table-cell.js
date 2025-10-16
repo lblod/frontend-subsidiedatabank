@@ -251,7 +251,7 @@ export default class RdfFormFieldsObjectiveTableTableCellComponent extends Compo
     if (e && typeof e.preventDefault === 'function') e.preventDefault();
 
     if (!this.isPositiveInteger(this.kilometers)) {
-      this.errors.pushObject({
+      this.errors.push({
         message: 'Het aantal kilometers mag niet onder 0 liggen',
       });
       this.updateTripleObject(

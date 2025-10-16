@@ -211,7 +211,7 @@ export default class RdfFormFieldsClimateSubsidyCostsTableTableRowWerfComponent 
     this.toRealiseUnitsErrors = A();
 
     if (!this.isPositiveInteger(toRealiseUnits)) {
-      this.toRealiseUnitsErrors.pushObject({
+      this.toRealiseUnitsErrors.push({
         message: 'Aantal items moeten groter of gelijk aan 0 zijn.',
       });
       this.updateTripleObject(
@@ -221,7 +221,7 @@ export default class RdfFormFieldsClimateSubsidyCostsTableTableRowWerfComponent 
       );
       return false;
     } else if (!this.isValidInteger(toRealiseUnits)) {
-      this.toRealiseUnitsErrors.pushObject({
+      this.toRealiseUnitsErrors.push({
         message: 'Aantal items moeten een geheel getal vormen.',
       });
       this.updateTripleObject(
@@ -238,7 +238,7 @@ export default class RdfFormFieldsClimateSubsidyCostsTableTableRowWerfComponent 
       'http://data.lblod.info/id/subsidies/rules/38d6d2bd-e42b-4d7e-8fea-9a371d9cf22f' ==
         this.businessRuleUri.value
     ) {
-      this.toRealiseUnitsErrors.pushObject({
+      this.toRealiseUnitsErrors.push({
         message:
           'Er is maximaal 1 te realiseren item mogelijk voor deze actie.',
       });
@@ -262,7 +262,7 @@ export default class RdfFormFieldsClimateSubsidyCostsTableTableRowWerfComponent 
     this.costPerUnitErrors = A();
 
     if (!this.isPositiveInteger(valuePerItem)) {
-      this.costPerUnitErrors.pushObject({
+      this.costPerUnitErrors.push({
         message: 'Waarde per item moeten groter of gelijk aan 0 zijn.',
       });
       this.updateTripleObject(

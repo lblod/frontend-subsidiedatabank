@@ -224,7 +224,7 @@ export default class RdfFormFieldsClimateSubsidyCostsTableTableRowVastgoedplanCo
     this.toRealiseUnitsErrors = A();
 
     if (!this.isPositiveInteger(toRealiseUnits)) {
-      this.toRealiseUnitsErrors.pushObject({
+      this.toRealiseUnitsErrors.push({
         message: 'Aantal items moeten groter of gelijk aan 0 zijn.',
       });
       this.updateTripleObject(
@@ -234,7 +234,7 @@ export default class RdfFormFieldsClimateSubsidyCostsTableTableRowVastgoedplanCo
       );
       return false;
     } else if (!this.isValidInteger(toRealiseUnits)) {
-      this.toRealiseUnitsErrors.pushObject({
+      this.toRealiseUnitsErrors.push({
         message: 'Aantal items moeten een geheel getal vormen.',
       });
       this.updateTripleObject(
@@ -244,7 +244,7 @@ export default class RdfFormFieldsClimateSubsidyCostsTableTableRowVastgoedplanCo
       );
       return false;
     } else if (toRealiseUnits > 1) {
-      this.toRealiseUnitsErrors.pushObject({
+      this.toRealiseUnitsErrors.push({
         message:
           'Er is maximaal 1 te realiseren item mogelijk voor deze actie.',
       });
@@ -268,7 +268,7 @@ export default class RdfFormFieldsClimateSubsidyCostsTableTableRowVastgoedplanCo
     this.costPerUnitErrors = A();
 
     if (!this.isPositiveInteger(valuePerItem)) {
-      this.costPerUnitErrors.pushObject({
+      this.costPerUnitErrors.push({
         message: 'Waarde per item moeten groter of gelijk aan 0 zijn.',
       });
       this.updateTripleObject(

@@ -117,7 +117,7 @@ export default class RdfFormFieldsEngagementTableEditComponent extends InputFiel
 
           const parsedEntry = this.parseEntryProperties(entryProperties);
 
-          this.entries.pushObject(
+          this.entries.push(
             new EngagementEntry({
               engagementEntrySubject: entry.object,
               existingStaff: parsedEntry.existingStaff,
@@ -208,7 +208,7 @@ export default class RdfFormFieldsEngagementTableEditComponent extends InputFiel
       additionalStaff: 0,
       volunteers: 0,
     });
-    entries.pushObject(newEntry);
+    entries.push(newEntry);
 
     this.initializeEntriesFields(entries);
     return entries;
@@ -279,11 +279,11 @@ export default class RdfFormFieldsEngagementTableEditComponent extends InputFiel
     this.updateFieldValueTriple(entry, 'existingStaff');
 
     if (this.isEmpty(entry.existingStaff.value)) {
-      entry.existingStaff.errors.pushObject({
+      entry.existingStaff.errors.push({
         message: 'Bestaand personeelskader is verplicht.',
       });
     } else if (!this.isPositiveNumber(entry.existingStaff.value)) {
-      entry.existingStaff.errors.pushObject({
+      entry.existingStaff.errors.push({
         message: 'Bestaand personeelskader is niet een positief nummer.',
       });
     }
@@ -301,11 +301,11 @@ export default class RdfFormFieldsEngagementTableEditComponent extends InputFiel
     this.updateFieldValueTriple(entry, 'additionalStaff');
 
     if (this.isEmpty(entry.additionalStaff.value)) {
-      entry.additionalStaff.errors.pushObject({
+      entry.additionalStaff.errors.push({
         message: 'Extra aangetrokken betaald personeel is verplicht.',
       });
     } else if (!this.isPositiveNumber(entry.additionalStaff.value)) {
-      entry.additionalStaff.errors.pushObject({
+      entry.additionalStaff.errors.push({
         message:
           'Extra aangetrokken betaald personeel is niet een positief nummer.',
       });
@@ -324,11 +324,11 @@ export default class RdfFormFieldsEngagementTableEditComponent extends InputFiel
     this.updateFieldValueTriple(entry, 'volunteers');
 
     if (this.isEmpty(entry.volunteers.value)) {
-      entry.volunteers.errors.pushObject({
+      entry.volunteers.errors.push({
         message: 'Ingezette vrijwilligers is verplicht.',
       });
     } else if (!this.isPositiveNumber(entry.volunteers.value)) {
-      entry.volunteers.errors.pushObject({
+      entry.volunteers.errors.push({
         message: 'Ingezette vrijwilligers is niet een positief nummer.',
       });
     }

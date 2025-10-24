@@ -219,7 +219,7 @@ export default class RdfFormFieldsApplicationFormTableEditComponent extends Inpu
 
           const parsedEntry = this.parseEntryProperties(entryProperties);
 
-          this.entries.pushObject(
+          this.entries.push(
             new ApplicationFormEntry({
               applicationFormEntrySubject: entry.object,
               actorName: parsedEntry.actorName ? parsedEntry.actorName : '',
@@ -473,7 +473,7 @@ export default class RdfFormFieldsApplicationFormTableEditComponent extends Inpu
       created: new Date().toISOString(),
     });
 
-    this.entries.pushObject(newEntry);
+    this.entries.push(newEntry);
 
     this.updateDefaultEntryFields(newEntry);
     super.updateValidations(); // Updates validation of the table
@@ -484,7 +484,7 @@ export default class RdfFormFieldsApplicationFormTableEditComponent extends Inpu
     entry.actorName.errors = [];
     this.updateFieldValueTriple(entry, 'actorName');
     if (this.isEmpty(entry.actorName.value)) {
-      entry.actorName.errors.pushObject({
+      entry.actorName.errors.push({
         message: 'Naam actor is verplicht.',
       });
     }
@@ -504,11 +504,11 @@ export default class RdfFormFieldsApplicationFormTableEditComponent extends Inpu
     this.updateAangevraagdBedrag();
 
     if (this.isEmpty(entry.numberChildrenForFullDay.value)) {
-      entry.numberChildrenForFullDay.errors.pushObject({
+      entry.numberChildrenForFullDay.errors.push({
         message: 'Aantal kinderen voor alle volle dagen is verplicht.',
       });
     } else if (!this.isPositiveInteger(entry.numberChildrenForFullDay.value)) {
-      entry.numberChildrenForFullDay.errors.pushObject({
+      entry.numberChildrenForFullDay.errors.push({
         message:
           'Aantal kinderen voor alle volle dagen is niet een positief nummer.',
       });
@@ -529,11 +529,11 @@ export default class RdfFormFieldsApplicationFormTableEditComponent extends Inpu
     this.updateAangevraagdBedrag();
 
     if (this.isEmpty(entry.numberChildrenForHalfDay.value)) {
-      entry.numberChildrenForHalfDay.errors.pushObject({
+      entry.numberChildrenForHalfDay.errors.push({
         message: 'Aantal kinderen voor alle halve dagen is verplicht.',
       });
     } else if (!this.isPositiveInteger(entry.numberChildrenForHalfDay.value)) {
-      entry.numberChildrenForHalfDay.errors.pushObject({
+      entry.numberChildrenForHalfDay.errors.push({
         message:
           'Aantal kinderen voor alle halve dagen is niet een positief nummer.',
       });
@@ -554,13 +554,13 @@ export default class RdfFormFieldsApplicationFormTableEditComponent extends Inpu
     this.updateAangevraagdBedrag();
 
     if (this.isEmpty(entry.numberChildrenPerInfrastructure.value)) {
-      entry.numberChildrenPerInfrastructure.errors.pushObject({
+      entry.numberChildrenPerInfrastructure.errors.push({
         message: 'Aantal kinderen per infrastructuur per dag is verplicht.',
       });
     } else if (
       !this.isPositiveInteger(entry.numberChildrenPerInfrastructure.value)
     ) {
-      entry.numberChildrenPerInfrastructure.errors.pushObject({
+      entry.numberChildrenPerInfrastructure.errors.push({
         message:
           'Aantal kinderen per infrastructuur per dag is niet een positief nummer.',
       });

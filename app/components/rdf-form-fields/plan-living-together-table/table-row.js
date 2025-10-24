@@ -209,7 +209,7 @@ export default class RdfFormFieldsPlanLivingTogetherTableTableRowComponent exten
     this.currentRangeErrors = A();
 
     if (!this.isPositiveInteger(currentRange)) {
-      this.currentRangeErrors.pushObject({
+      this.currentRangeErrors.push({
         message: 'De waarde moet groter of gelijk aan 0 zijn.',
       });
       this.updateTripleObject(
@@ -219,7 +219,7 @@ export default class RdfFormFieldsPlanLivingTogetherTableTableRowComponent exten
       );
       return false;
     } else if (!this.isValidInteger(currentRange)) {
-      this.currentRangeErrors.pushObject({
+      this.currentRangeErrors.push({
         message: 'De waarde moet een geheel getal vormen.',
       });
       this.updateTripleObject(
@@ -235,7 +235,7 @@ export default class RdfFormFieldsPlanLivingTogetherTableTableRowComponent exten
     this.plannedRangeErrors = A();
 
     if (!this.isPositiveInteger(plannedRange)) {
-      this.plannedRangeErrors.pushObject({
+      this.plannedRangeErrors.push({
         message: 'De waarde moet groter of gelijk aan 0 zijn.',
       });
       this.updateTripleObject(
@@ -245,7 +245,7 @@ export default class RdfFormFieldsPlanLivingTogetherTableTableRowComponent exten
       );
       return false;
     } else if (!this.isValidInteger(plannedRange)) {
-      this.plannedRangeErrors.pushObject({
+      this.plannedRangeErrors.push({
         message: 'De waarde moet een geheel getal vormen.',
       });
       this.updateTripleObject(
@@ -255,7 +255,7 @@ export default class RdfFormFieldsPlanLivingTogetherTableTableRowComponent exten
       );
       return false;
     } else if (plannedRange > this.maxRange) {
-      this.plannedRangeErrors.pushObject({
+      this.plannedRangeErrors.push({
         message: `De waarde mag niet hoger liggen dan ${this.maxRange}.`,
       });
       this.updateTripleObject(
@@ -271,7 +271,7 @@ export default class RdfFormFieldsPlanLivingTogetherTableTableRowComponent exten
     this.priorityErrors = A();
 
     if (this.plannedRange > 0 && this.priority == 0) {
-      this.priorityErrors.pushObject({
+      this.priorityErrors.push({
         message: 'Gelieve een waarde groter dan 0 in te geven.',
       });
       this.updateTripleObject(
@@ -281,7 +281,7 @@ export default class RdfFormFieldsPlanLivingTogetherTableTableRowComponent exten
       );
       return false;
     } else if (!this.isPositiveInteger(priority)) {
-      this.priorityErrors.pushObject({
+      this.priorityErrors.push({
         message: 'De waarde moet groter of gelijk aan 0 zijn.',
       });
       this.updateTripleObject(
@@ -291,7 +291,7 @@ export default class RdfFormFieldsPlanLivingTogetherTableTableRowComponent exten
       );
       return false;
     } else if (!this.isValidInteger(priority)) {
-      this.priorityErrors.pushObject({
+      this.priorityErrors.push({
         message: 'De waarde moet een geheel getal vormen.',
       });
       this.updateTripleObject(

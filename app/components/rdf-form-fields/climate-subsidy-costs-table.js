@@ -255,7 +255,7 @@ export default class RdfFormFieldsClimateSubsidyCostsTableComponent extends Inpu
       this.storeOptions.sourceGraph
     );
     if (invalidRow) {
-      this.errors.pushObject({
+      this.errors.push({
         message: 'Een van de rijen is niet correct ingevuld',
       });
       this.updateTripleObject(
@@ -264,7 +264,7 @@ export default class RdfFormFieldsClimateSubsidyCostsTableComponent extends Inpu
         null
       );
     } else if (!this.isPositiveInteger(this.restitutionToDestribute)) {
-      this.errors.pushObject({
+      this.errors.push({
         message: 'Trekkingsrecht te verdelen moet groter of gelijk aan 0 zijn',
       });
       this.updateTripleObject(

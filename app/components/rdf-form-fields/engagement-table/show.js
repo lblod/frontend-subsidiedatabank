@@ -85,7 +85,7 @@ export default class RdfFormFieldsEngagementTableShowComponent extends InputFiel
 
           const parsedEntry = this.parseEntryProperties(entryProperties);
 
-          this.entries.pushObject(
+          this.entries.push(
             new EngagementEntry({
               engagementEntrySubject: entry.object,
               existingStaff: parsedEntry.existingStaff,

@@ -159,12 +159,12 @@ export default class RdfFormFieldsPlanLivingTogetherTableEditComponent extends I
     );
 
     if (invalidRow) {
-      this.errors.pushObject({
+      this.errors.push({
         message: 'Een van de rijen is niet correct ingevuld',
       });
       this.updateTripleObject(this.planTableSubject, validPlanTable, null);
     } else if (!hasPlannedRange.length) {
-      this.errors.pushObject({
+      this.errors.push({
         message:
           'Minstens één gepland bereik veld moet een waarde groter dan 0 bevatten.',
       });

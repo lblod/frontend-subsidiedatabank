@@ -190,9 +190,9 @@ export default class RdfFormFieldsAccountabilityTableTableRowComponent extends C
     ]);
 
     if (file) {
-      this.files.pushObject(new FileField({ record: file, errors: [] }));
+      this.files.push(new FileField({ record: file, errors: [] }));
     } else {
-      this.files.pushObject(
+      this.files.push(
         new FileField({
           record: null,
           errors: ['Geen bestand gevonden'],
@@ -267,13 +267,13 @@ export default class RdfFormFieldsAccountabilityTableTableRowComponent extends C
     this.addressesWithBusErrors = [];
 
     if (!this.address) {
-      return this.addressErrors.pushObject({
+      return this.addressErrors.push({
         message: 'Adres is verplicht.',
       });
     }
 
     if (this.addressesWithBus?.length) {
-      return this.addressesWithBusErrors.pushObject({
+      return this.addressesWithBusErrors.push({
         message: 'Het busnummer voor dit adres is verplicht.',
       });
     }
@@ -289,13 +289,13 @@ export default class RdfFormFieldsAccountabilityTableTableRowComponent extends C
     this.bedroomCountErrors = [];
 
     if (parseInt(this.bedroomCount) <= 0) {
-      return this.bedroomCountErrors.pushObject({
+      return this.bedroomCountErrors.push({
         message: 'Het aantal slaapkamers moet groter zijn dan 0.',
       });
     }
 
     if (!this.isValidInteger(Number(this.bedroomCount))) {
-      return this.bedroomCountErrors.pushObject({
+      return this.bedroomCountErrors.push({
         message: 'Het aantal slaapkamers moet een geheel getal zijn.',
       });
     }
@@ -310,7 +310,7 @@ export default class RdfFormFieldsAccountabilityTableTableRowComponent extends C
   validateSharedInvoice() {
     this.sharedInvoiceErrors = [];
     if (!this.sharedInvoice) {
-      return this.sharedInvoiceErrors.pushObject({
+      return this.sharedInvoiceErrors.push({
         message: 'Dit veld is verplicht.',
       });
     }

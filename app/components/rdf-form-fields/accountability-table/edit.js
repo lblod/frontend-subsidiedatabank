@@ -126,7 +126,7 @@ export default class RdfFormFieldsAccountabilityTableEditComponent extends Input
         this.storeOptions.sourceGraph
       );
 
-      this.entries.pushObject({
+      this.entries.push({
         entrySubject: entry.object,
         created: createdEntryProperty[0]?.object.value,
       });
@@ -230,7 +230,7 @@ export default class RdfFormFieldsAccountabilityTableEditComponent extends Input
       graph: this.storeOptions.sourceGraph,
     });
 
-    this.entries.pushObject({
+    this.entries.push({
       entrySubject: accountabilityEntrySubject,
       created: created,
     });
@@ -297,7 +297,7 @@ export default class RdfFormFieldsAccountabilityTableEditComponent extends Input
     );
 
     if (invalidRow) {
-      this.errors.pushObject({
+      this.errors.push({
         message: 'Een van de rijen is niet correct ingevuld',
       });
 

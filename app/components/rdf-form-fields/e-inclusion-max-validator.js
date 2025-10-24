@@ -63,17 +63,17 @@ export default class RdfFormFieldsEInclusionMaxValidatorComponent extends Simple
     const source = this.storeOptions.sourceNode;
     const num = Number(this.value);
     if (!this.isRealPositiveNumber(num)) {
-      this.errors.pushObject({
+      this.errors.push({
         message: 'Geef een bedrag groter dan 0 in',
       });
       this.updateTripleObject(source, validAmountPredicate, null);
     } else if (!this.isValidEuroAmount(this.value)) {
-      this.errors.pushObject({
+      this.errors.push({
         message: 'Geef een bedrag met maximaal 2 cijfers na de komma in',
       });
       this.updateTripleObject(source, validAmountPredicate, null);
     } else if (!this.isValidAmountLB(num)) {
-      this.errors.pushObject({
+      this.errors.push({
         message:
           'Het aangevraagde bedrag overschrijdt de maximale waarde voor dit bestuur: €' +
           Math.round(this.maximumvalue),

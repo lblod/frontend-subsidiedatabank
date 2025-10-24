@@ -125,7 +125,7 @@ export default class RdfFormFieldsApplicationFormTableShowComponent extends Inpu
 
           const parsedEntry = this.parseEntryProperties(entryProperties);
 
-          this.entries.pushObject(
+          this.entries.push(
             new ApplicationFormEntry({
               applicationFormEntrySubject: entry.object,
               actorName: parsedEntry.actorName,

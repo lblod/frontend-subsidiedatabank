@@ -135,7 +135,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
         share: detail.share,
         index: detail.index,
       });
-      entries.pushObject(newEntry);
+      entries.push(newEntry);
     });
 
     this.initializeEntriesFields(entries);
@@ -260,7 +260,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
       isNaN(parseInt(entry.object.value))
     );
     if (invalidCosts.length) {
-      this.errors.pushObject({
+      this.errors.push({
         message: 'Eén van de velden werd niet correct ingevuld.',
       });
       this.updateTripleObject(
@@ -274,7 +274,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
       (entry) => parseInt(entry.object.value) > 0
     );
     if (!positiveCosts.length) {
-      this.errors.pushObject({
+      this.errors.push({
         message:
           'Minstens één kosten veld moet een waarde groter dan 0 bevatten.',
       });
@@ -299,7 +299,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
     entry.cost.errors = [];
 
     if (!this.isPositiveInteger(entry.cost.value)) {
-      entry.cost.errors.pushObject({
+      entry.cost.errors.push({
         message: 'Kosten moet groter of gelijk aan 0 zijn',
       });
       this.updateTripleObject(
@@ -345,7 +345,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
     entry.share.errors = [];
     entry['share'].value = commasToDecimalPointsFix(entry['share'].value);
     if (this.isEmpty(entry.share.value)) {
-      entry.share.errors.pushObject({
+      entry.share.errors.push({
         message: 'Gemeentelijk aandeel in kosten is verplicht.',
       });
       this.updateTripleObject(
@@ -354,7 +354,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
         null
       );
     } else if (!this.isPositiveInteger(Number(entry.share.value))) {
-      entry.share.errors.pushObject({
+      entry.share.errors.push({
         message:
           'Het gemeentelijke aandeel in kosten moet groter of gelijk aan 0 zijn',
       });
@@ -364,7 +364,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
         null
       );
     } else if (!this.isSmallerThan(Number(entry.share.value), 100)) {
-      entry.share.errors.pushObject({
+      entry.share.errors.push({
         message:
           'Het gemeentelijke aandeel in kosten mag niet hoger liggen dan 100%',
       });

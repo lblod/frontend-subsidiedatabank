@@ -20,10 +20,6 @@ module.exports = async function (defaults) {
     '@lblod/ember-submission-form-fields': {
       helpTextBelowLabel: true,
     },
-    '@appuniversum/ember-appuniversum': {
-      dutchDatePickerLocalization: true,
-      disableWormholeElement: true,
-    },
   });
 
   setConfig(app, __dirname, {

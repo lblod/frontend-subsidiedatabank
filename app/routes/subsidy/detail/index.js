@@ -20,9 +20,8 @@ export default class SubsidyDetailIndexRoute extends Route {
     }
 
     await consumption.subsidyApplicationFlow.get('definedSteps');
-    const steps = await consumption.subsidyApplicationFlow.get(
-      'sortedDefinedSteps'
-    );
+    const steps =
+      await consumption.subsidyApplicationFlow.get('sortedDefinedSteps');
 
     if (!steps || steps.length === 0) throw 'corrupt flow: no steps defined';
     /**
@@ -44,7 +43,7 @@ export default class SubsidyDetailIndexRoute extends Route {
     return this.router.transitionTo(
       'subsidy.detail.step',
       consumption.id,
-      step.id
+      step.id,
     );
   }
 }

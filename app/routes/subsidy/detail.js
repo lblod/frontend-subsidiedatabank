@@ -43,15 +43,15 @@ export default class SubsidyDetailRoute extends Route {
           'participations.participating-organization',
           'last-modifier',
         ].join(','),
-      }
+      },
     );
 
     const participations = await consumption.participations;
-    const organization = await participations[0].participatingOrganization;  
-    
+    const organization = await participations[0].participatingOrganization;
+
     return {
       consumption,
-      organization
+      organization,
     };
   }
 

@@ -27,14 +27,14 @@ export default class SubsidyDetailStepIndexRoute extends Route {
         'subsidy.detail.step.detail',
         consumption.id,
         step.id,
-        form.id
+        form.id,
       );
     } else {
       // Form not found => step was skipped in subsidiepunt
       return this.router.replaceWith(
         'subsidy.detail.step.skipped',
         consumption.id,
-        step.id
+        step.id,
       );
     }
   }

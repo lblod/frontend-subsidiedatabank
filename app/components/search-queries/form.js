@@ -36,7 +36,7 @@ export default class SearchQueriesFormComponent extends Component {
       undefined,
       RDF('type'),
       FORM('Form'),
-      FORM_GRAPHS.formGraph
+      FORM_GRAPHS.formGraph,
     );
   }
 
@@ -65,7 +65,7 @@ export default class SearchQueriesFormComponent extends Component {
     this.sourceNode = await retrieveSourceData(
       query.uri,
       `/search-queries/${query.id}`,
-      this.formStore
+      this.formStore,
     );
   }
 

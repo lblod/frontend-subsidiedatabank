@@ -12,7 +12,7 @@ export default class RowComponent extends Component {
       return false;
     }
 
-    return true
+    return true;
   }
 
   projectName = (consumption) => {

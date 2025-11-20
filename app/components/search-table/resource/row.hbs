@@ -26,12 +26,10 @@
   </div>
 </td>
 <td>
-  {{! template-lint-disable no-array-prototype-extensions }}
-  {{@consumption.participations.firstObject.participatingOrganization.classificatie.label}}
+  {{this.firstParticipation.participatingOrganization.classificatie.label}}
 </td>
 <td>
-  {{! template-lint-disable no-array-prototype-extensions }}
-  {{@consumption.participations.firstObject.participatingOrganization.naam}}
+  {{this.firstParticipation.participatingOrganization.naam}}
 </td>
 <td>
   {{#if @consumption.modified}}

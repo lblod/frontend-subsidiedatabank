@@ -4,6 +4,11 @@ import { inject as service } from '@ember/service';
 export default class RowComponent extends Component {
   @service features;
 
+  get firstParticipation() {
+    // We assume the data was included and loaded before the component renders, so we don't have to deal with the async states.
+    return this.args.consumption.hasMany('participations').value().at(0);
+  }
+
   get isViewableSubsidy() {
     if (
       this.args.consumption.status.get('id') ==

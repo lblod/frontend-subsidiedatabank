@@ -5,7 +5,6 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { timeout, dropTask, task } from 'ember-concurrency';
-import fetch from 'fetch';
 
 // TODO: cleanup unnecessary code
 export default class SubsidyDetailStepDetailController extends Controller {

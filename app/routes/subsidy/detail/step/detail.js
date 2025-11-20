@@ -1,6 +1,5 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import fetch from 'fetch';
 import { ForkingStore } from '@lblod/ember-submission-form-fields';
 import { FORM, RDF } from 'frontend-subsidiedatabank/rdf/namespaces';
 import { NamedNode } from 'rdflib';

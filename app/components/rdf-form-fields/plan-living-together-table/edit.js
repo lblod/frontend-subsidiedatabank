@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { A } from '@ember/array';
 import { action } from '@ember/object';
 import { triplesForPath } from '@lblod/submission-form-helpers';
+/* eslint-disable ember/no-runloop */
 import { scheduleOnce } from '@ember/runloop';
 import { NamedNode } from 'rdflib';
 import { v4 as uuidv4 } from 'uuid';

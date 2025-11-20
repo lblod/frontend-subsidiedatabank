@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { A } from '@ember/array';
 import { action } from '@ember/object';
 import { literal, NamedNode } from 'rdflib';
+/* eslint-disable ember/no-runloop */
 import { scheduleOnce } from '@ember/runloop';
 import { v4 as uuidv4 } from 'uuid';
 import { MU, RDF, XSD } from 'frontend-subsidiedatabank/rdf/namespaces';

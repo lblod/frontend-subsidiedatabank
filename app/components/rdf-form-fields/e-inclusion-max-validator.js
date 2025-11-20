@@ -4,6 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import { A } from '@ember/array';
 import { action } from '@ember/object';
 import { NamedNode } from 'rdflib';
+/* eslint-disable ember/no-runloop */
 import { scheduleOnce } from '@ember/runloop';
 import { LBLOD_SUBSIDIE } from 'frontend-subsidiedatabank/rdf/namespaces';
 

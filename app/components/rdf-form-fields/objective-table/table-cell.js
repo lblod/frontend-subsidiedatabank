@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+/* eslint-disable ember/no-runloop */
 import { schedule } from '@ember/runloop';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';

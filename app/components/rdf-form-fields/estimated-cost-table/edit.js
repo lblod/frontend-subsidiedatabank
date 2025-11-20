@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking';
 
 import { NamedNode } from 'rdflib';
 import { v4 as uuidv4 } from 'uuid';
+/* eslint-disable ember/no-runloop */
 import { next } from '@ember/runloop';
 
 import BaseTable from './base-table';

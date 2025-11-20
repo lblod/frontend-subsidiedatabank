@@ -4,6 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import { triplesForPath } from '@lblod/submission-form-helpers';
 import { NamedNode } from 'rdflib';
 import { v4 as uuidv4 } from 'uuid';
+/* eslint-disable ember/no-runloop */
 import { next } from '@ember/runloop';
 import { MU, RDF } from 'frontend-subsidiedatabank/rdf/namespaces';
 

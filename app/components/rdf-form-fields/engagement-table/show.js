@@ -1,6 +1,7 @@
 import InputFieldComponent from '@lblod/ember-submission-form-fields/components/rdf-input-fields/input-field';
 import { tracked } from '@glimmer/tracking';
 import { triplesForPath } from '@lblod/submission-form-helpers';
+/* eslint-disable ember/no-runloop */
 import { next } from '@ember/runloop';
 import { NamedNode } from 'rdflib';
 

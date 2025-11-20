@@ -14,6 +14,7 @@ export default class ApplicationRoute extends Route {
     try {
       await this.currentSession.load();
     } catch (error) {
+      console.error(error);
       this.session.invalidate();
     }
   }

@@ -582,6 +582,7 @@ export default class RdfFormFieldsApplicationFormTableEditComponent extends Inpu
 
       if (!this.hasEntries) this.removeApplicationFormTable();
     }
+    // TODO: this doesn't actually work after disabling the prototype extensions, but since we're not using the edit component here, it doesn't really matter
     this.entries.removeObject(entry);
     this.updateAangevraagdBedrag();
 

@@ -11,8 +11,7 @@
       <div class="au-o-region">
         <MockLogin as |login|>
           {{#if this.queryStore.isRunning}}
-            <AuLoader @size="small" />
-            <span class="au-u-hidden-visually">Aan het laden</span>
+            <AuLoader>Accounts aan het laden</AuLoader>
           {{else}}
             {{#if login.errorMessage}}
               <AuAlert @icon="info-circle" @title={{login.errorMessage}} @skin="error">{{login.errorMessage}}</AuAlert>
@@ -29,7 +28,13 @@
                 {{account.gebruiker.voornaam}} {{account.gebruiker.achternaam}}
               </AuButton>
             {{/each}}
-            <NumberPagination @page={{this.page}} @size={{this.size}} @nbOfItems={{this.model.length}} @total={{this.model.meta.count}} @links={{this.model.meta.pagination}} />
+            <AuDataTableNumberPagination
+              @page={{this.page}}
+              @size={{this.size}}
+              @nbOfItems={{this.model.length}}
+              @total={{this.model.meta.count}}
+              @links={{this.model.meta.pagination}}
+            />
           {{/if}}
         </MockLogin>
       </div>

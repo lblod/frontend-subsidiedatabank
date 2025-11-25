@@ -48,7 +48,7 @@
         <AuButton
           @skin="link"
           role="menuitem"
-          @disabled={{(lt this.downloadLinks.length 1)}}
+          @disabled={{lt this.downloadLinks.length 1}}
           {{on "click" this.downloadBijlagen}}
         >
           Alle bijlagen downloaden in .zip
@@ -65,8 +65,7 @@
     <ul class="au-o-grid au-o-grid--tiny au-u-1-1">
       <li class="au-o-grid__item au-u-1-2 au-u-1-3@small au-u-1-6@medium">
         <AuLabel>Organisatie</AuLabel>
-        <p
-        >{{this.organization.classificatie.label}}&nbsp;{{this.organization.naam}}</p>
+        <p>{{this.model.organization.classificatie.label}}&nbsp;{{this.model.organization.naam}}</p>
       </li>
       <li class="au-o-grid__item au-u-1-2 au-u-1-3@small au-u-1-6@medium">
         <AuLabel>Status</AuLabel>

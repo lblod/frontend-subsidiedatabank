@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking';
 
 import { NamedNode } from 'rdflib';
 import { v4 as uuidv4 } from 'uuid';
+/* eslint-disable ember/no-runloop */
 import { next } from '@ember/runloop';
 
 import BaseTable from './base-table';
@@ -80,7 +81,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
           this.sourceNode,
           estimatedCostTablePredicate,
           this.estimatedCostTableSubject,
-          this.storeOptions.sourceGraph
+          this.storeOptions.sourceGraph,
         ).length > 0
       );
   }
@@ -99,7 +100,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
   createEstimatedCostTable() {
     const uuid = uuidv4();
     this.estimatedCostTableSubject = new NamedNode(
-      `${estimatedCostTableBaseUri}/${uuid}`
+      `${estimatedCostTableBaseUri}/${uuid}`,
     );
     const triples = [
       {
@@ -156,7 +157,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
     rows.forEach((target) => {
       const uuid = uuidv4();
       const estimatedCostEntrySubject = new NamedNode(
-        `${subsidyRulesUri}/${uuid}`
+        `${subsidyRulesUri}/${uuid}`,
       );
 
       estimatedCostEntriesDetails.push({
@@ -185,7 +186,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
           predicate: estimatedCostEntryPredicate,
           object: estimatedCostEntrySubject,
           graph: this.storeOptions.sourceGraph,
-        }
+        },
       );
     });
     this.storeOptions.store.addAll(triples);
@@ -219,7 +220,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
           predicate: entry['index'].predicate,
           object: entry['index'].value,
           graph: this.storeOptions.sourceGraph,
-        }
+        },
       );
     });
     this.storeOptions.store.addAll(triples);
@@ -230,7 +231,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
       subject,
       predicate,
       undefined,
-      this.storeOptions.sourceGraph
+      this.storeOptions.sourceGraph,
     );
 
     this.storeOptions.store.removeStatements([...triples]);
@@ -253,11 +254,11 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
       undefined,
       costPredicate,
       undefined,
-      this.storeOptions.sourceGraph
+      this.storeOptions.sourceGraph,
     );
 
     const invalidCosts = entries.filter((entry) =>
-      isNaN(parseInt(entry.object.value))
+      isNaN(parseInt(entry.object.value)),
     );
     if (invalidCosts.length) {
       this.errors.push({
@@ -266,12 +267,12 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
       this.updateTripleObject(
         this.estimatedCostTableSubject,
         validEstimatedCostTable,
-        null
+        null,
       );
     }
 
     const positiveCosts = entries.filter(
-      (entry) => parseInt(entry.object.value) > 0
+      (entry) => parseInt(entry.object.value) > 0,
     );
     if (!positiveCosts.length) {
       this.errors.push({
@@ -281,7 +282,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
       this.updateTripleObject(
         this.estimatedCostTableSubject,
         validEstimatedCostTable,
-        null
+        null,
       );
     }
 
@@ -289,7 +290,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
       this.updateTripleObject(
         this.estimatedCostTableSubject,
         validEstimatedCostTable,
-        true
+        true,
       );
     }
   }
@@ -305,13 +306,13 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
       this.updateTripleObject(
         this.estimatedCostTableSubject,
         validEstimatedCostTable,
-        null
+        null,
       );
     } else {
       this.updateTripleObject(
         this.estimatedCostTableSubject,
         validEstimatedCostTable,
-        true
+        true,
       );
     }
 
@@ -321,19 +322,19 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
       this.updateTripleObject(
         entry.estimatedCostEntrySubject,
         entry['cost'].predicate,
-        'Field is empty'
+        'Field is empty',
       );
     } else if (parseInt(entry.cost.value) < 0) {
       this.updateTripleObject(
         entry.estimatedCostEntrySubject,
         entry['cost'].predicate,
-        'Field is negative'
+        'Field is negative',
       );
     } else {
       this.updateTripleObject(
         entry.estimatedCostEntrySubject,
         entry['cost'].predicate,
-        entry['cost'].value
+        entry['cost'].value,
       );
     }
 
@@ -351,7 +352,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
       this.updateTripleObject(
         this.estimatedCostTableSubject,
         validEstimatedCostTable,
-        null
+        null,
       );
     } else if (!this.isPositiveInteger(Number(entry.share.value))) {
       entry.share.errors.push({
@@ -361,7 +362,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
       this.updateTripleObject(
         this.estimatedCostTableSubject,
         validEstimatedCostTable,
-        null
+        null,
       );
     } else if (!this.isSmallerThan(Number(entry.share.value), 100)) {
       entry.share.errors.push({
@@ -371,13 +372,13 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
       this.updateTripleObject(
         this.estimatedCostTableSubject,
         validEstimatedCostTable,
-        null
+        null,
       );
     } else {
       this.updateTripleObject(
         this.estimatedCostTableSubject,
         validEstimatedCostTable,
-        true
+        true,
       );
     }
 
@@ -388,7 +389,7 @@ export default class RdfFormFieldsEstimatedCostTableEditComponent extends BaseTa
       this.updateTripleObject(
         entry.estimatedCostEntrySubject,
         entry['share'].predicate,
-        entry['share'].value
+        entry['share'].value,
       );
     }
   }

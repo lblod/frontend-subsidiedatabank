@@ -13,19 +13,15 @@ module.exports = function (environment) {
         // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
       },
     },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
-
-    // Feature flags for the application to enable/disable certain features
-    featureFlags: {
-      detailView: false,
-    },
-    // Analytics
-    'ember-plausible': {
-      domain: '{{PLAUSIBLE_APP_DOMAIN}}',
-      apiHost: '{{PLAUSIBLE_API_ENDPOINT}}',
+    moment: {
+      allowEmpty: true,
+      includeLocales: ['nl-be'],
+      includeTimezone: 'all',
     },
 
     acmidm: {
@@ -36,14 +32,34 @@ module.exports = function (environment) {
       authRedirectUrl: '{{ACMIDM_AUTH_REDIRECT_URL}}',
       switchRedirectUrl: '{{ACMIDM_SWITCH_REDIRECT_URL}}',
     },
+    features: {
+      // 'feature-name': '{{FEATURE_ENV_VAR_NAME}}',
+    },
+    'ember-plausible': {
+      enabled: false,
+    },
+    plausible: {
+      domain: '{{ANALYTICS_APP_DOMAIN}}',
+      apiHost: '{{ANALYTICS_API_HOST}}',
+    },
+    sentry: {
+      dsn: '{{SENTRY_DSN}}',
+      environment: '{{SENTRY_ENVIRONMENT}}',
+    },
+    '@sentry/ember': {
+      // Performance tracking isn't super useful for us yet and it sends a lot of data to the backend (which counts against the free tier limit).
+      // It also prevents the performance instrumentation code from running when Sentry isn't enabled (which is something that ideally is fixed in the addon itself).
+      disablePerformance: true,
+    },
+    globalSystemNotification: '{{GLOBAL_SYSTEM_NOTIFICATION}}',
   };
 
   if (environment === 'development') {
-    ENV.featureFlags['detailView'] = true;
-  }
-
-  if (environment === 'production') {
-    ENV.featureFlags['detailView'] = true;
+    // ENV.APP.LOG_RESOLVER = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_TRANSITIONS = true;
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
   if (environment === 'test') {
@@ -58,8 +74,9 @@ module.exports = function (environment) {
     ENV.APP.autoboot = false;
   }
 
-  // if (environment === 'production') {
-  // }
+  if (environment === 'production') {
+    // here you can enable a production-specific feature
+  }
 
   return ENV;
 };

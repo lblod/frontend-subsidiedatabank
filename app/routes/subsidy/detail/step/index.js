@@ -15,13 +15,14 @@ export default class SubsidyDetailStepIndexRoute extends Route {
         'subsidy-measure-consumption': {
           ':id:': consumption.id,
         },
-      },
+      }
     });
 
     /**
      * NOTE: for now hardcoded with the assumption "one step has only one form"
      */
     const form = forms[0];
+
     if (form) {
       return this.router.replaceWith(
         'subsidy.detail.step.detail',
@@ -30,6 +31,21 @@ export default class SubsidyDetailStepIndexRoute extends Route {
         form.id,
       );
     } else {
+      const applicationFlow = await consumption.subsidyApplicationFlow
+      const definedSteps = await applicationFlow.get('definedSteps')
+      const lastStep = definedSteps.length - 1;
+
+      const isLastStep =
+        step.get('order') === lastStep;
+
+      if (isLastStep) {
+        return this.router.replaceWith(
+          'subsidy.detail.step.not-started',
+          consumption.id,
+          step.id,
+        );
+      }
+
       // Form not found => step was skipped in subsidiepunt
       return this.router.replaceWith(
         'subsidy.detail.step.skipped',

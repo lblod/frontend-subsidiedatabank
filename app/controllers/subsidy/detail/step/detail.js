@@ -5,6 +5,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { timeout, dropTask, task } from 'ember-concurrency';
+import { getEffectiveDeadline } from 'frontend-subsidiedatabank/helpers/effective-deadline';
 
 // TODO: cleanup unnecessary code
 export default class SubsidyDetailStepDetailController extends Controller {
@@ -108,7 +109,7 @@ export default class SubsidyDetailStepDetailController extends Controller {
 
   get submittablePeriodExpired() {
     const today = new Date();
-    const end = this.deadline.end;
+    const end = this.effectiveDeadline;
     if (!end) {
       return false;
     } else {
@@ -118,6 +119,10 @@ export default class SubsidyDetailStepDetailController extends Controller {
 
   get deadline() {
     return this.model.step.get('deadline').content;
+  }
+
+  get effectiveDeadline() {
+    return getEffectiveDeadline([this.consumption, this.step]);
   }
 
   get isConsumptionFromToday() {
